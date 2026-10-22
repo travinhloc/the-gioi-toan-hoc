@@ -1,0 +1,29 @@
+# Mẫu nội dung, cần giáo viên rà lại trước khi dùng thật.
+schemaVersion: 1
+lop: 7
+chuong: 2
+ten: Số thực
+nguon: Toán 7 Kết nối tri thức, tập 1, chương II (cần đối chiếu mục lục)
+cauHoi:
+  - id: l7-c2-0001
+    bai: Làm quen với số thập phân vô hạn tuần hoàn
+    loai: trac-nghiem
+    de: "Phân số nào viết được dưới dạng số thập phân vô hạn tuần hoàn?"
+    luaChon: ["$\\frac{1}{4}$", "$\\frac{3}{8}$", "$\\frac{2}{3}$", "$\\frac{7}{20}$"]
+    dapAn: C
+    loiGiai: "$\\frac{2}{3} = 0{,}(6)$. Các phân số còn lại có mẫu chỉ chứa thừa số 2 và 5."
+    doKho: 2
+
+  - id: l7-c2-0002
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: so
+    de: "Tính $\\sqrt{81}$."
+    dapAn: "9"
+    doKho: 1
+
+  - id: l7-c2-0003
+    bai: Tập hợp các số thực
+    loai: so
+    de: "Tính $|-3{,}5|$."
+    dapAn: "3,5"
+    doKho: 1

@@ -1,0 +1,6 @@
+node_modules/
+dist/
+coverage/
+apps/web/public/content/
+*.log
+.DS_Store
