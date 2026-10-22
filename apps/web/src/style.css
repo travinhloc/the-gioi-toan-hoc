@@ -57,7 +57,6 @@ button:disabled { opacity: 0.4; cursor: not-allowed; }
 #pad [data-dir="left"] { grid-area: left; }
 #pad [data-dir="right"] { grid-area: right; }
 #pad [data-act="mine"] { grid-area: mine; }
-@media (pointer: fine) { #pad { display: none; } }
 dialog {
   background: var(--panel);
   color: var(--fg);

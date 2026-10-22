@@ -177,6 +177,9 @@ function takeMission(code: string): string | null {
   if (!r.ok) return r.error;
   // Mã chuẩn hóa (chữ hoa, có gạch nối) để gõ tay hay mở link đều ra cùng một nhiệm vụ.
   update(acceptMission(state, r.mission, encodeMission(r.mission)));
+  // Đưa con trỏ về bản đồ, nếu không phím mũi tên vẫn bị ô nhập mã giữ lại.
+  worldEl.focus();
+  statusEl.textContent = `${statusLine()} · Đã nhận nhiệm vụ! Mũi tên để đi, phím cách để đào quặng ◆.`;
   return null;
 }
 
