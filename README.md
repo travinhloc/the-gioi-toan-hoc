@@ -9,6 +9,9 @@ không có màn thua.
 Thầy cô tạo mã nhiệm vụ ở `giao-vien.html` (link hoặc 15 kí tự gõ tay), gửi cho lớp qua Zalo. Mã chỉ
 chứa lớp, chương, số câu và hạn; không cần tài khoản hay máy chủ.
 
+Chơi ngay: https://travinhloc.github.io/the-gioi-toan-hoc/ (trang giáo viên:
+https://travinhloc.github.io/the-gioi-toan-hoc/giao-vien.html).
+
 Bản đầu tiên (MVP) nhắm tới lớp 7, chương I đến IV, với hai hoạt động Đào và Chế tạo.
 
 ## Cấu trúc
@@ -39,6 +42,9 @@ npm run dev       # dựng nội dung rồi mở máy chủ phát triển
 npm run check     # lint, typecheck, test, kiểm định nội dung
 npm run build     # bản phát hành trong apps/web/dist
 ```
+
+Mỗi lần `main` thay đổi, workflow `.github/workflows/pages.yml` build lại và đưa lên GitHub Pages.
+Lần đầu cần bật Settings → Pages → Source: GitHub Actions.
 
 ## Dữ liệu và quyền riêng tư
 
