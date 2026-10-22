@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/travinhloc/the-gioi-toan-hoc/content/schema/chuong.schema.json",
+  "title": "Một chương (vùng mỏ) trong ngân hàng câu hỏi",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "lop", "chuong", "ten", "cauHoi"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "lop": { "type": "integer", "minimum": 6, "maximum": 9 },
+    "chuong": { "type": "integer", "minimum": 1, "maximum": 20, "description": "Số thứ tự chương theo SGK Kết nối tri thức" },
+    "ten": { "type": "string", "minLength": 1 },
+    "nguon": { "type": "string", "description": "Ghi chú nguồn, ví dụ bài và trang SGK đối chiếu" },
+    "cauHoi": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/cauHoi" }
+    }
+  },
+  "definitions": {
+    "cauHoi": {
+      "type": "object",
+      "required": ["id", "loai", "de", "dapAn"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^l[6-9]-c[0-9]{1,2}-[0-9]{4}$",
+          "description": "Mã cố định, không bao giờ đổi hay dùng lại sau khi phát hành"
+        },
+        "loai": { "enum": ["so", "trac-nghiem"] },
+        "de": { "type": "string", "minLength": 1, "description": "Đề bài; công thức đặt trong $...$ (KaTeX)" },
+        "dapAn": { "type": "string", "minLength": 1 },
+        "luaChon": { "type": "array", "minItems": 2, "maxItems": 6, "items": { "type": "string", "minLength": 1 } },
+        "goiY": { "type": "string" },
+        "loiGiai": { "type": "string" },
+        "doKho": { "type": "integer", "minimum": 1, "maximum": 3 },
+        "bai": { "type": "string", "description": "Tên bài trong SGK" }
+      },
+      "additionalProperties": false,
+      "if": { "properties": { "loai": { "const": "trac-nghiem" } } },
+      "then": { "required": ["luaChon"] },
+      "else": { "not": { "required": ["luaChon"] } }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "@tgth/grader",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Máy chấm thuần TypeScript: đọc và so sánh đáp án Toán, không phụ thuộc DOM",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  }
+}

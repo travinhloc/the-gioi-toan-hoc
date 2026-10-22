@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1b1f24" />
+    <meta name="description" content="Game ôn Toán THCS miễn phí: đào quặng bằng cách giải toán." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <title>Thế Giới Khối Toán</title>
+  </head>
+  <body>
+    <header>
+      <h1>Thế Giới Khối Toán</h1>
+      <span id="status" aria-live="polite"></span>
+    </header>
+    <main>
+      <pre id="world" aria-label="Bản đồ thế giới" tabindex="0"></pre>
+      <aside>
+        <section>
+          <h2>Túi đồ</h2>
+          <ul id="inventory"></ul>
+        </section>
+        <section>
+          <h2>Chế tạo</h2>
+          <div id="recipes"></div>
+        </section>
+        <section class="help">
+          <h2>Cách chơi</h2>
+          <p>Mũi tên hoặc WASD để đi và quay hướng. Phím cách để đào khối phía trước. Đào quặng ◆ thì phải giải một câu toán.</p>
+        </section>
+      </aside>
+    </main>
+    <div id="pad" aria-hidden="true">
+      <button data-dir="up">▲</button>
+      <button data-dir="left">◀</button>
+      <button data-act="mine">Đào</button>
+      <button data-dir="right">▶</button>
+      <button data-dir="down">▼</button>
+    </div>
+    <dialog id="question">
+      <form method="dialog">
+        <p id="question-text"></p>
+        <div id="question-choices"></div>
+        <label id="question-input-label">
+          Đáp án
+          <input id="question-input" autocomplete="off" inputmode="text" />
+        </label>
+        <p id="question-feedback" aria-live="polite"></p>
+        <menu>
+          <button value="cancel" formnovalidate>Để sau</button>
+          <button id="question-submit" value="default">Trả lời</button>
+        </menu>
+      </form>
+    </dialog>
+    <script type="module" src="./src/main.ts"></script>
+  </body>
+</html>

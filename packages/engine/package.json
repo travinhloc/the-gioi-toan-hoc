@@ -1,0 +1,14 @@
+{
+  "name": "@tgth/engine",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Engine game thuần TypeScript: thế giới khối, đào, chế tạo, ngày đêm. Không phụ thuộc DOM",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "dependencies": {
+    "@tgth/grader": "0.1.0"
+  }
+}
