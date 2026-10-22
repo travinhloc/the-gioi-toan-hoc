@@ -18,6 +18,26 @@
       <pre id="world" aria-label="Bản đồ thế giới" tabindex="0"></pre>
       <aside>
         <section>
+          <h2>Hôm nay</h2>
+          <div id="phase" aria-live="polite"></div>
+        </section>
+        <section>
+          <h2>Thư Thợ Cả</h2>
+          <div id="mission"></div>
+          <form id="mission-form">
+            <label>
+              Mã nhiệm vụ
+              <input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXX-XXXXX-XXXXX" />
+            </label>
+            <button>Nhận nhiệm vụ</button>
+            <p id="mission-error" class="error" aria-live="polite"></p>
+          </form>
+        </section>
+        <section>
+          <h2>Sổ Tay</h2>
+          <ul id="notebook"></ul>
+        </section>
+        <section>
           <h2>Túi đồ</h2>
           <ul id="inventory"></ul>
         </section>
@@ -28,6 +48,8 @@
         <section class="help">
           <h2>Cách chơi</h2>
           <p>Mũi tên hoặc WASD để đi và quay hướng. Phím cách để đào khối phía trước. Đào quặng ◆ thì phải giải một câu toán.</p>
+          <p>Câu sai được ghi vào Sổ Tay. Hết mặt trời thì đêm xuống, lỗi sai hóa thành quái: trả lời đúng để thu phục và nhận Đá Sáng. Không ai bị thua.</p>
+          <p><a href="./giao-vien.html">Dành cho thầy cô: tạo mã nhiệm vụ</a></p>
         </section>
       </aside>
     </main>

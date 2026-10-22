@@ -35,7 +35,7 @@ main { display: flex; gap: 1rem; flex-wrap: wrap; padding: 0 1rem 1rem; }
 aside { flex: 1 1 14rem; display: grid; gap: 1rem; align-content: start; }
 aside section { background: var(--panel); padding: 0.75rem; }
 #recipes { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.help p { margin: 0; color: var(--muted); font-size: 0.875rem; }
+.help p { margin: 0 0 0.5rem; color: var(--muted); font-size: 0.875rem; }
 button {
   font: inherit;
   background: #374151;
@@ -69,6 +69,19 @@ dialog::backdrop { background: rgb(0 0 0 / 0.6); }
 #question-choices { display: grid; gap: 0.5rem; margin-bottom: 0.5rem; }
 #question-choices button { text-align: left; }
 label { display: grid; gap: 0.25rem; }
-input { font: inherit; padding: 0.4rem; }
+input, select { font: inherit; padding: 0.4rem; }
 menu { display: flex; justify-content: flex-end; gap: 0.5rem; padding: 0; }
 #question-feedback { color: #fbbf24; min-height: 1.2em; }
+#phase p, #mission p { margin: 0 0 0.5rem; }
+#phase { display: grid; gap: 0.5rem; justify-items: start; }
+#notebook { margin: 0; padding-left: 1.2rem; }
+#mission-form { display: grid; gap: 0.5rem; }
+button.quiet { background: transparent; }
+.error { color: #fbbf24; min-height: 1.2em; margin: 0; }
+a { color: var(--accent); }
+.teacher main { display: block; max-width: 36rem; }
+.teacher form, .teacher #result { display: grid; gap: 0.75rem; background: var(--panel); padding: 1rem; margin-bottom: 1rem; }
+.teacher fieldset { border: 1px solid #4b5563; }
+.teacher .check { display: flex; gap: 0.5rem; align-items: baseline; }
+.code { font-size: 1.6rem; font-weight: 700; letter-spacing: 0.08em; margin: 0; }
+.muted { color: var(--muted); font-size: 0.875rem; }

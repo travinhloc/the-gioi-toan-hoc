@@ -4,6 +4,13 @@ lop: 7
 chuong: 1
 ten: Số hữu tỉ
 nguon: Toán 7 Kết nối tri thức, tập 1, chương I (cần đối chiếu mục lục)
+loiSai:
+  cong-tu-mau:
+    ten: Nhện Cộng Mẫu
+    moTa: "Cộng tử với tử, mẫu với mẫu, ví dụ $\\frac{1}{2} + \\frac{1}{3} = \\frac{2}{5}$."
+  quen-doi-dau:
+    ten: Con Lật Dấu
+    moTa: "Chuyển một số sang vế kia mà quên đổi dấu."
 cauHoi:
   - id: l7-c1-0001
     bai: Tập hợp các số hữu tỉ
@@ -20,6 +27,7 @@ cauHoi:
     de: "Tính $\\frac{1}{2} + \\frac{1}{3}$."
     dapAn: "5/6"
     goiY: "Quy đồng mẫu số chung là 6."
+    loiSai: cong-tu-mau
     loiGiai: "$\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$."
     doKho: 1
 
@@ -44,4 +52,25 @@ cauHoi:
     de: "Tìm $x$, biết $x - \\frac{1}{5} = \\frac{3}{10}$."
     dapAn: "1/2"
     goiY: "Chuyển $-\\frac{1}{5}$ sang vế phải thành $+\\frac{1}{5}$."
+    loiSai: quen-doi-dau
+    doKho: 2
+
+  - id: l7-c1-0006
+    bai: Cộng, trừ, nhân, chia số hữu tỉ
+    loai: so
+    de: "Tính $\\frac{2}{5} + \\frac{1}{4}$."
+    dapAn: "13/20"
+    goiY: "Quy đồng mẫu số chung là 20."
+    loiGiai: "$\\frac{2}{5} + \\frac{1}{4} = \\frac{8}{20} + \\frac{5}{20} = \\frac{13}{20}$."
+    loiSai: cong-tu-mau
+    doKho: 1
+
+  - id: l7-c1-0007
+    bai: Quy tắc dấu ngoặc và quy tắc chuyển vế
+    loai: so
+    de: "Tìm $x$, biết $x + \\frac{3}{4} = \\frac{1}{2}$."
+    dapAn: "-1/4"
+    goiY: "Chuyển $+\\frac{3}{4}$ sang vế phải thành $-\\frac{3}{4}$."
+    loiGiai: "$x = \\frac{1}{2} - \\frac{3}{4} = \\frac{2}{4} - \\frac{3}{4} = -\\frac{1}{4}$."
+    loiSai: quen-doi-dau
     doKho: 2

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1b1f24" />
+    <meta name="description" content="Tạo mã nhiệm vụ Thế Giới Khối Toán để giao cho lớp." />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <title>Giao nhiệm vụ · Thế Giới Khối Toán</title>
+  </head>
+  <body class="teacher">
+    <header>
+      <h1>Giao nhiệm vụ</h1>
+      <a href="./">Về game</a>
+    </header>
+    <main>
+      <form id="mission-builder">
+        <label>
+          Lớp
+          <select name="lop">
+            <option>6</option>
+            <option selected>7</option>
+            <option>8</option>
+            <option>9</option>
+          </select>
+        </label>
+        <fieldset>
+          <legend>Chương (vùng mỏ)</legend>
+          <div id="chapters"></div>
+        </fieldset>
+        <label>
+          Số câu đúng cần đạt
+          <input name="soCau" type="number" min="1" max="63" value="10" required />
+        </label>
+        <label>
+          Hạn (không bắt buộc)
+          <input name="han" type="date" />
+        </label>
+        <button>Tạo mã</button>
+        <p id="builder-error" class="error" aria-live="polite"></p>
+      </form>
+      <section id="result" hidden aria-live="polite">
+        <h2>Mã nhiệm vụ</h2>
+        <p id="code" class="code"></p>
+        <label>
+          Link gửi vào nhóm Zalo lớp
+          <input id="link" readonly />
+        </label>
+        <p>
+          <button id="copy-link" type="button">Chép link</button>
+          <button id="copy-code" type="button">Chép mã</button>
+        </p>
+        <p class="muted">
+          Học sinh mở link, hoặc gõ mã vào ô Thư Thợ Cả trong game. Mã chỉ chứa lớp, chương, số câu và hạn;
+          không có thông tin nào về học sinh, và không có gì được gửi lên máy chủ.
+        </p>
+      </section>
+    </main>
+    <script type="module" src="./src/giao-vien.ts"></script>
+  </body>
+</html>
