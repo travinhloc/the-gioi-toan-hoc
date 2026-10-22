@@ -1,4 +1,5 @@
-export type Item = "go" | "da" | "dat" | "quang" | "cuoc-go" | "cuoc-da" | "duoc";
+/** "da-sang" (Đá Sáng) chỉ rơi khi thu phục quái lỗi sai, nên đồ tốt nhất phải đi qua ôn tập. */
+export type Item = "go" | "da" | "dat" | "quang" | "da-sang" | "cuoc-go" | "cuoc-da" | "duoc" | "dong-ho-cat";
 
 export type Inventory = Partial<Record<Item, number>>;
 
@@ -13,6 +14,8 @@ export const RECIPES: readonly Recipe[] = [
   { id: "cuoc-go", ten: "Cuốc gỗ", can: { go: 3 }, ra: "cuoc-go" },
   { id: "cuoc-da", ten: "Cuốc đá", can: { go: 2, da: 3 }, ra: "cuoc-da" },
   { id: "duoc", ten: "Đuốc", can: { go: 1, quang: 1 }, ra: "duoc" },
+  // Lần sai kế tiếp trong ngày không làm mặt trời tụt thêm nấc.
+  { id: "dong-ho-cat", ten: "Đồng hồ cát", can: { da: 2, "da-sang": 1 }, ra: "dong-ho-cat" },
 ];
 
 export function canCraft(inv: Inventory, recipe: Recipe): boolean {

@@ -16,6 +16,13 @@ export interface CauHoi {
   loiGiai?: string;
   doKho?: number;
   bai?: string;
+  loiSai?: string;
+}
+
+/** Một lỗi sai điển hình, cũng là một con quái ban đêm. */
+export interface LoiSai {
+  ten: string;
+  moTa: string;
 }
 
 export interface Chuong {
@@ -24,6 +31,7 @@ export interface Chuong {
   chuong: number;
   ten: string;
   nguon?: string;
+  loiSai?: Record<string, LoiSai>;
   cauHoi: CauHoi[];
 }
 
@@ -63,6 +71,8 @@ export function loadContent(root: string): { chuong: LoadedChuong[]; errors: str
   const errors: string[] = [];
   const chuong: LoadedChuong[] = [];
   const seenIds = new Map<string, string>();
+  // Cùng một lỗi sai có thể xuất hiện ở nhiều chương, nhưng phải cùng tên quái.
+  const seenLoi = new Map<string, { ten: string; file: string }>();
 
   for (const path of walkYaml(root).sort()) {
     const file = relative(root, path);
@@ -77,6 +87,12 @@ export function loadContent(root: string): { chuong: LoadedChuong[]; errors: str
       for (const err of validateSchema.errors ?? []) errors.push(`${file}${err.instancePath}: ${err.message}`);
       continue;
     }
+    for (const [ma, loi] of Object.entries(data.loiSai ?? {})) {
+      const prev = seenLoi.get(ma);
+      if (prev && prev.ten !== loi.ten) errors.push(`${file}: lỗi sai "${ma}" tên "${loi.ten}" khác với "${prev.ten}" ở ${prev.file}`);
+      seenLoi.set(ma, { ten: loi.ten, file });
+      for (const msg of checkMath(loi.moTa)) errors.push(`${file} lỗi sai "${ma}": ${msg}`);
+    }
     const prefix = `l${data.lop}-c${data.chuong}-`;
     data.cauHoi.forEach((q, i) => {
       const where = `${file} câu ${i + 1} (${q.id})`;
@@ -84,6 +100,7 @@ export function loadContent(root: string): { chuong: LoadedChuong[]; errors: str
       const dup = seenIds.get(q.id);
       if (dup) errors.push(`${where}: trùng mã với ${dup}`);
       seenIds.set(q.id, where);
+      if (q.loiSai && !data.loiSai?.[q.loiSai]) errors.push(`${where}: lỗi sai "${q.loiSai}" chưa khai báo trong loiSai của chương`);
       const gq: Question = q.loai === "trac-nghiem" ? { loai: q.loai, luaChon: q.luaChon ?? [], dapAn: q.dapAn } : { loai: q.loai, dapAn: q.dapAn };
       for (const msg of validateQuestion(gq)) errors.push(`${where}: ${msg}`);
       for (const text of [q.de, q.goiY, q.loiGiai, ...(q.luaChon ?? [])]) {
