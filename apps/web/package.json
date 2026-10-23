@@ -14,6 +14,7 @@
     "@fontsource/noto-sans-mono": "^5.3.0",
     "@tgth/engine": "0.1.0",
     "@tgth/grader": "0.1.0",
+    "@tgth/importer": "0.1.0",
     "katex": "^0.19.0",
     "qrcode-generator": "^2.0.4"
   },

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#1b1f24" />
+    <meta name="description" content="Soạn câu hỏi Thế Giới Khối Toán bằng Excel và kiểm tra ngay trên trình duyệt." />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <title>Nhập câu hỏi · Thế Giới Khối Toán</title>
+  </head>
+  <body class="teacher importer">
+    <header>
+      <h1>Nhập câu hỏi</h1>
+      <a href="./giao-vien.html">Giao nhiệm vụ</a>
+      <a href="./">Về game</a>
+    </header>
+    <main>
+      <section class="panel">
+        <h2>1. Chọn chương</h2>
+        <label>
+          Chương sẽ thêm câu hỏi
+          <select id="chapter">
+            <option value="">Đang tải danh sách chương...</option>
+          </select>
+        </label>
+        <div id="new-chapter" class="row" hidden>
+          <label>Lớp <input id="new-lop" type="number" min="6" max="9" value="7" /></label>
+          <label>Chương <input id="new-chuong" type="number" min="1" max="20" value="3" /></label>
+          <label class="grow">Tên chương <input id="new-ten" placeholder="ví dụ Góc và đường thẳng song song" /></label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>2. Tải mẫu và soạn câu hỏi</h2>
+        <p class="row">
+          <button id="dl-xlsx" type="button">Mẫu Excel (.xlsx)</button>
+          <button id="dl-csv" type="button" class="quiet">Mẫu CSV</button>
+        </p>
+        <p class="muted">
+          Nên dùng mẫu Excel: các ô đã để sẵn dạng Văn bản nên gõ 1/2 không bị đổi thành ngày tháng, và có
+          danh sách chọn cho Loại, Độ khó, Lỗi sai. Mẫu CSV dành cho Google Trang tính hoặc LibreOffice.
+          Mỗi câu một dòng; trang Hướng dẫn trong file giải thích từng cột.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>3. Chọn file đã soạn</h2>
+        <label id="drop" class="drop">
+          <span>Kéo file vào đây hoặc bấm để chọn (.xlsx, .csv, .txt)</span>
+          <input id="file" type="file" accept=".xlsx,.csv,.tsv,.txt,text/csv,text/plain,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" />
+        </label>
+        <details>
+          <summary>Hoặc dán thẳng từ Excel</summary>
+          <p class="muted">Chọn vùng ô trong Excel (gồm cả dòng tiêu đề), chép rồi dán vào đây.</p>
+          <textarea id="paste" rows="6" placeholder="Mã câu&#9;Bài&#9;Loại&#9;Đề bài&#9;Đáp án..."></textarea>
+          <p><button id="check-paste" type="button">Kiểm tra</button></p>
+        </details>
+        <p class="muted">Trang chỉ đọc file ngay trên máy này. Không có gì được gửi lên máy chủ.</p>
+      </section>
+
+      <section id="result" class="panel" hidden aria-live="polite">
+        <h2>4. Kết quả kiểm tra</h2>
+        <p id="summary"></p>
+        <ul id="notes" class="notes"></ul>
+        <table id="issues" hidden>
+          <thead>
+            <tr><th>Dòng</th><th>Cột</th><th>Vấn đề</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div id="output" hidden>
+          <h2>Xem trước</h2>
+          <p class="muted">Học sinh sẽ thấy câu hỏi như dưới đây. Gõ thử đáp án để xem máy chấm của game chấm thế nào.</p>
+          <ol id="preview" class="preview"></ol>
+          <h2>File YAML</h2>
+          <p id="yaml-help" class="muted"></p>
+          <textarea id="yaml" rows="12" readonly spellcheck="false"></textarea>
+          <p class="row">
+            <button id="dl-yaml" type="button">Tải file YAML</button>
+            <button id="copy-yaml" type="button" class="quiet">Chép</button>
+          </p>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./src/nhap-cau-hoi.ts"></script>
+  </body>
+</html>

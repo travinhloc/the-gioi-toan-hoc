@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2022"],
+    // Chỉ để có kiểu TextEncoder/TextDecoder (trình duyệt và Node đều có) và node:zlib trong test.
+    // Mã nguồn không dùng API riêng của Node; eslint vẫn cấm chạm vào DOM.
+    "types": ["node"]
+  },
+  "include": ["src"]
+}
