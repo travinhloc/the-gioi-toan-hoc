@@ -28,7 +28,10 @@ export function loadSave(): GameState | null {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const state = JSON.parse(raw) as GameState;
-      return typeof state.sun === "number" && Array.isArray(state.notebook) ? state : null;
+      if (typeof state.sun !== "number" || !Array.isArray(state.notebook)) return null;
+      // Bản lưu trước khi có mã kết quả: nhiệm vụ chưa có đúng/sai theo bài và lỗi.
+      const m = state.mission;
+      return m ? { ...state, mission: { ...m, bai: m.bai ?? {}, loi: m.loi ?? {} } } : state;
     }
     const v1 = localStorage.getItem(KEY_V1);
     return v1 ? fromV1(JSON.parse(v1) as SaveV1) : null;
@@ -43,5 +46,24 @@ export function writeSave(state: GameState): void {
     localStorage.removeItem(KEY_V1);
   } catch {
     // Trình duyệt chặn lưu trữ: vẫn chơi được, chỉ không giữ tiến độ.
+  }
+}
+
+const KEY_STT = "tgth.stt";
+
+/** Số thứ tự trong lớp em đã gõ lần trước, để lần sau khỏi gõ lại. Chỉ lưu trên máy này. */
+export function loadStt(): string {
+  try {
+    return localStorage.getItem(KEY_STT) ?? "";
+  } catch {
+    return "";
+  }
+}
+
+export function writeStt(stt: string): void {
+  try {
+    localStorage.setItem(KEY_STT, stt);
+  } catch {
+    // Không lưu được thì lần sau gõ lại.
   }
 }

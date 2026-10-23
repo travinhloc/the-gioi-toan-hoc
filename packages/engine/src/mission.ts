@@ -6,9 +6,11 @@
  * 75 bit = 65 bit dữ liệu + 10 bit kiểm tra:
  *   phiên bản 3 · lớp 2 (lớp - 6) · chương 16 (bit i = chương i + 1) · số câu 6 · hạn 14
  *   (số ngày kể từ 2026-01-01, 0 = không hạn) · mã nhiệm vụ 24 (ngẫu nhiên).
- * Mã kiểm tra là tổng có trọng số theo vị trí, mod 1021, nên gõ nhầm một kí tự hay đảo hai
- * kí tự cạnh nhau đều bị bắt. Mã chỉ chống gõ nhầm, không chống làm giả.
+ * Mã kiểm tra (xem code.ts) bắt được gõ nhầm một kí tự hay đảo hai kí tự cạnh nhau. Mã chỉ
+ * chống gõ nhầm, không chống làm giả.
  */
+import { ALPHABET, bitReader, group, normalize, packFields, verify, withChecksum } from "./code";
+
 export interface Mission {
   readonly lop: number;
   /** Các chương (vùng mỏ) được giao, tăng dần. */
@@ -22,7 +24,6 @@ export interface Mission {
 }
 
 const VERSION = 1;
-const ALPHABET = "0123456789ABCDEFGHJKMNPQRSTVWXYZ";
 const EPOCH = Date.UTC(2026, 0, 1);
 const DAY_MS = 86_400_000;
 const DATA_CHARS = 13;
@@ -31,10 +32,6 @@ const MAX_CHUONG = 16;
 const MAX_HAN_DAYS = (1 << 14) - 1;
 
 export type MissionResult = { ok: true; mission: Mission } | { ok: false; error: string };
-
-function checksum(values: readonly number[]): number {
-  return values.reduce((sum, v, i) => (sum + (i + 1) * (v + 1)) % 1021, 0);
-}
 
 function toDays(han: string): number {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(han);
@@ -64,32 +61,18 @@ export function encodeMission(m: Mission): string {
     [m.han ? toDays(m.han) : 0, 14],
     [m.id, 24],
   ];
-  const bits = fields.flatMap(([value, width]) => Array.from({ length: width }, (_, i) => (value >>> (width - 1 - i)) & 1));
-  const values = Array.from({ length: DATA_CHARS }, (_, i) => bits.slice(i * 5, i * 5 + 5).reduce((v, b) => v * 2 + b, 0));
-  const check = checksum(values);
-  values.push(check >> 5, check & 31);
-  const text = values.map((v) => ALPHABET[v]).join("");
-  return `${text.slice(0, 5)}-${text.slice(5, 10)}-${text.slice(10)}`;
+  return group(withChecksum(packFields(fields)));
 }
 
 export function decodeMission(code: string): MissionResult {
   // Chấp nhận chữ thường, dấu cách, gạch nối, và các chữ dễ nhầm O/I/L.
-  const text = code.toUpperCase().replace(/[\s-]/g, "").replace(/O/g, "0").replace(/[IL]/g, "1");
+  const text = normalize(code);
   if (text.length !== DATA_CHARS + 2) return { ok: false, error: "Mã nhiệm vụ phải có đúng 15 kí tự." };
-  const values = [...text].map((ch) => ALPHABET.indexOf(ch));
-  if (values.includes(-1)) return { ok: false, error: "Mã nhiệm vụ có kí tự không hợp lệ." };
-  const data = values.slice(0, DATA_CHARS);
-  if (checksum(data) !== values[DATA_CHARS]! * 32 + values[DATA_CHARS + 1]!) {
-    return { ok: false, error: "Mã nhiệm vụ bị gõ nhầm ở đâu đó, em kiểm tra lại từng kí tự nhé." };
-  }
+  if ([...text].some((ch) => !ALPHABET.includes(ch))) return { ok: false, error: "Mã nhiệm vụ có kí tự không hợp lệ." };
+  const data = verify(text);
+  if (!data) return { ok: false, error: "Mã nhiệm vụ bị gõ nhầm ở đâu đó, em kiểm tra lại từng kí tự nhé." };
 
-  const bits = data.flatMap((v) => [4, 3, 2, 1, 0].map((s) => (v >> s) & 1));
-  let pos = 0;
-  const read = (width: number) => {
-    const v = bits.slice(pos, pos + width).reduce((acc, b) => acc * 2 + b, 0);
-    pos += width;
-    return v;
-  };
+  const { read } = bitReader(data);
   const version = read(3);
   if (version !== VERSION) return { ok: false, error: "Mã nhiệm vụ này cần bản game mới hơn." };
   const lop = read(2) + 6;

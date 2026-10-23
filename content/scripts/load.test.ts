@@ -3,6 +3,7 @@ import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { hashKey } from "@tgth/engine";
 import { checkMath, loadContent } from "./load";
 
 describe("nội dung mẫu", () => {
@@ -43,5 +44,32 @@ describe("lỗi sai", () => {
     expect(errors).toHaveLength(2);
     expect(errors[0]).toContain("khác với");
     expect(errors[1]).toContain("chưa khai báo");
+  });
+});
+
+describe("mã băm cho mã kết quả", () => {
+  it("hai tên bài cùng lớp trùng mã băm thì bị báo", () => {
+    const seen = new Map<number, string>();
+    let pair: [string, string] | null = null;
+    for (let i = 0; !pair; i++) {
+      const name = `Bài ${i}`;
+      const other = seen.get(hashKey(name));
+      if (other) pair = [other, name];
+      seen.set(hashKey(name), name);
+    }
+    const dir = mkdtempSync(join(tmpdir(), "tgth-"));
+    writeFileSync(
+      join(dir, "c1.yaml"),
+      [
+        "schemaVersion: 1",
+        "lop: 7",
+        "chuong: 1",
+        "ten: Thử",
+        "cauHoi:",
+        `  - { id: l7-c1-0001, bai: "${pair[0]}", loai: so, de: "1+1", dapAn: "2" }`,
+        `  - { id: l7-c1-0002, bai: "${pair[1]}", loai: so, de: "1+2", dapAn: "3" }`,
+      ].join("\n"),
+    );
+    expect(loadContent(dir).errors.join("\n")).toMatch(/trùng mã băm/);
   });
 });
