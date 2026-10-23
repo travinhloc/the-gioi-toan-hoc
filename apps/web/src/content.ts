@@ -51,3 +51,8 @@ export async function loadBank(
     loiSai: Object.assign({}, ...files.map((f) => f.loiSai ?? {})) as Record<string, LoiSai>,
   };
 }
+
+/** Một chương trong bản phát hành, dùng cho trang nhập câu hỏi (tránh trùng mã, lấy danh sách lỗi sai). */
+export async function loadChapter(path: string): Promise<ChuongFile> {
+  return (await (await fetch(new URL(path, BASE))).json()) as ChuongFile;
+}

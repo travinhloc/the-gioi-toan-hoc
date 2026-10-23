@@ -1,9 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join, relative } from "node:path";
 import { Ajv } from "ajv";
-import katex from "katex";
 import { parse } from "yaml";
 import { validateQuestion, type Question } from "@tgth/grader";
+import { checkMath } from "@tgth/importer";
 import schema from "../schema/chuong.schema.json" with { type: "json" };
 
 export interface CauHoi {
@@ -40,23 +40,11 @@ export interface LoadedChuong {
   data: Chuong;
 }
 
+// Dùng chung với trang nhập câu hỏi của giáo viên.
+export { checkMath };
+
 const ajv = new Ajv({ allErrors: true });
 const validateSchema = ajv.compile<Chuong>(schema);
-
-/** Kiểm tra từng đoạn $...$ dựng được bằng KaTeX ở chế độ an toàn (không trust, không macro lạ). */
-export function checkMath(text: string): string[] {
-  const errors: string[] = [];
-  const parts = text.split("$");
-  if (parts.length % 2 === 0) return ["số dấu $ lẻ, công thức chưa đóng"];
-  for (let i = 1; i < parts.length; i += 2) {
-    try {
-      katex.renderToString(parts[i]!, { throwOnError: true, trust: false, strict: "error" });
-    } catch (e) {
-      errors.push(`công thức "${parts[i]}": ${(e as Error).message}`);
-    }
-  }
-  return errors;
-}
 
 function walkYaml(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((d) => {
