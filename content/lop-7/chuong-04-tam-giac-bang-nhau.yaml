@@ -1,0 +1,184 @@
+# Mẫu nội dung, cần giáo viên rà lại trước khi dùng thật.
+# Chưa có hình vẽ, nên mỗi đề tự mô tả hình bằng lời. Đáp án số đo góc tính bằng độ.
+schemaVersion: 1
+lop: 7
+chuong: 4
+ten: Tam giác bằng nhau
+nguon: Toán 7 Kết nối tri thức, tập 1, chương IV (Bài 12 đến Bài 16)
+loiSai:
+  tong-goc-sai:
+    ten: Mèo Ba Sáu
+    moTa: "Nhớ nhầm tổng ba góc của một tam giác là $360^\\circ$ thay vì $180^\\circ$."
+  dinh-tuong-ung-sai:
+    ten: Ếch Lệch Đỉnh
+    moTa: "Ghép sai cặp đỉnh tương ứng khi đọc kí hiệu hai tam giác bằng nhau, ví dụ từ $\\triangle ABC = \\triangle MNP$ suy ra $BC = MN$."
+  goc-khong-xen-giua:
+    ten: Nhím Ba Góc
+    moTa: "Dùng góc không xen giữa hai cạnh cho trường hợp c.g.c, hoặc nghĩ ba góc bằng nhau là đủ để hai tam giác bằng nhau."
+  nham-goc-day-dinh:
+    ten: Dê Đỉnh Núi
+    moTa: "Nhầm góc ở đỉnh với góc ở đáy của tam giác cân."
+cauHoi:
+  - id: l7-c4-0001
+    bai: Tổng các góc trong một tam giác
+    loai: so
+    de: "Tam giác $ABC$ có $\\widehat{A} = 60^\\circ$, $\\widehat{B} = 75^\\circ$. Tính số đo $\\widehat{C}$ (độ)."
+    dapAn: "45"
+    goiY: "Tổng ba góc của một tam giác bằng $180^\\circ$."
+    loiGiai: "$\\widehat{C} = 180^\\circ - 60^\\circ - 75^\\circ = 45^\\circ$."
+    loiSai: tong-goc-sai
+    doKho: 1
+
+  - id: l7-c4-0002
+    bai: Tổng các góc trong một tam giác
+    loai: so
+    de: "Một tam giác vuông có một góc nhọn bằng $35^\\circ$. Góc nhọn còn lại bằng bao nhiêu độ?"
+    dapAn: "55"
+    goiY: "Trong tam giác vuông, hai góc nhọn phụ nhau (tổng $90^\\circ$)."
+    loiSai: tong-goc-sai
+    doKho: 1
+
+  - id: l7-c4-0003
+    bai: Tổng các góc trong một tam giác
+    loai: so
+    de: "Tam giác $ABC$ có $\\widehat{A} = 50^\\circ$, $\\widehat{B} = 70^\\circ$. Tính số đo góc ngoài của tam giác tại đỉnh $C$ (độ)."
+    dapAn: "120"
+    goiY: "Góc ngoài tại $C$ kề bù với $\\widehat{C}$."
+    loiGiai: "$\\widehat{C} = 180^\\circ - 50^\\circ - 70^\\circ = 60^\\circ$, nên góc ngoài tại $C$ bằng $180^\\circ - 60^\\circ = 120^\\circ$."
+    doKho: 2
+
+  - id: l7-c4-0004
+    bai: Tổng các góc trong một tam giác
+    loai: so
+    de: "Ba góc của một tam giác có số đo tỉ lệ với $1$, $2$, $3$. Góc lớn nhất bằng bao nhiêu độ?"
+    dapAn: "90"
+    goiY: "Chia $180^\\circ$ thành $1 + 2 + 3 = 6$ phần bằng nhau."
+    loiGiai: "Mỗi phần bằng $30^\\circ$, góc lớn nhất bằng $3 \\cdot 30^\\circ = 90^\\circ$."
+    loiSai: tong-goc-sai
+    doKho: 3
+
+  - id: l7-c4-0005
+    bai: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác
+    loai: trac-nghiem
+    de: "Cho $\\triangle ABC = \\triangle MNP$. Cạnh nào bằng cạnh $BC$?"
+    luaChon: ["$MN$", "$NP$", "$MP$", "$AC$"]
+    dapAn: B
+    goiY: "Các đỉnh viết theo đúng thứ tự tương ứng: $A$ với $M$, $B$ với $N$, $C$ với $P$."
+    loiSai: dinh-tuong-ung-sai
+    doKho: 1
+
+  - id: l7-c4-0006
+    bai: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác
+    loai: so
+    de: "Cho $\\triangle ABC = \\triangle DEF$, biết $\\widehat{A} = 80^\\circ$ và $\\widehat{E} = 40^\\circ$. Tính số đo $\\widehat{C}$ (độ)."
+    dapAn: "60"
+    goiY: "$\\widehat{B}$ tương ứng với $\\widehat{E}$."
+    loiGiai: "$\\widehat{B} = \\widehat{E} = 40^\\circ$, nên $\\widehat{C} = 180^\\circ - 80^\\circ - 40^\\circ = 60^\\circ$."
+    loiSai: dinh-tuong-ung-sai
+    doKho: 2
+
+  - id: l7-c4-0007
+    bai: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác
+    loai: so
+    de: "Cho $\\triangle ABC = \\triangle DEF$, biết $AB = 5\\,\\text{cm}$, $BC = 7\\,\\text{cm}$, $DF = 6\\,\\text{cm}$. Tính chu vi tam giác $DEF$ (cm)."
+    dapAn: "18"
+    goiY: "$DE = AB$ và $EF = BC$."
+    loiGiai: "Chu vi $= DE + EF + DF = 5 + 7 + 6 = 18$ (cm)."
+    loiSai: dinh-tuong-ung-sai
+    doKho: 2
+
+  - id: l7-c4-0008
+    bai: Hai tam giác bằng nhau. Trường hợp bằng nhau thứ nhất của tam giác
+    loai: trac-nghiem
+    de: "Tam giác $ABC$ và tam giác $MNP$ có $AB = MN$, $BC = NP$, $AC = MP$. Cách viết nào đúng?"
+    luaChon: ["$\\triangle ABC = \\triangle MNP$", "$\\triangle ABC = \\triangle NMP$", "$\\triangle ABC = \\triangle PNM$", "Chưa đủ điều kiện để kết luận"]
+    dapAn: A
+    loiGiai: "Ba cặp cạnh bằng nhau nên hai tam giác bằng nhau (c.c.c), với $A$ ứng $M$, $B$ ứng $N$, $C$ ứng $P$."
+    loiSai: dinh-tuong-ung-sai
+    doKho: 1
+
+  - id: l7-c4-0009
+    bai: Trường hợp bằng nhau thứ hai và thứ ba của tam giác
+    loai: trac-nghiem
+    de: "Tam giác $ABC$ và tam giác $DEF$ có $AB = DE$, $\\widehat{B} = \\widehat{E}$. Cần thêm điều kiện nào để $\\triangle ABC = \\triangle DEF$ theo trường hợp cạnh – góc – cạnh?"
+    luaChon: ["$BC = EF$", "$AC = DF$", "$\\widehat{A} = \\widehat{D}$", "$\\widehat{C} = \\widehat{F}$"]
+    dapAn: A
+    goiY: "Góc phải xen giữa hai cạnh. Góc $B$ nằm giữa cạnh $BA$ và cạnh nào?"
+    loiSai: goc-khong-xen-giua
+    doKho: 2
+
+  - id: l7-c4-0010
+    bai: Trường hợp bằng nhau thứ hai và thứ ba của tam giác
+    loai: trac-nghiem
+    de: "Tam giác $ABC$ và tam giác $DEF$ có $\\widehat{B} = \\widehat{E}$, $BC = EF$. Cần thêm điều kiện nào để $\\triangle ABC = \\triangle DEF$ theo trường hợp góc – cạnh – góc?"
+    luaChon: ["$\\widehat{C} = \\widehat{F}$", "$AC = DF$", "$AB = EF$", "$\\widehat{A} = \\widehat{E}$"]
+    dapAn: A
+    goiY: "Cạnh $BC$ phải nằm giữa hai góc."
+    loiSai: goc-khong-xen-giua
+    doKho: 2
+
+  - id: l7-c4-0011
+    bai: Trường hợp bằng nhau thứ hai và thứ ba của tam giác
+    loai: trac-nghiem
+    de: "Hai tam giác có ba cặp góc bằng nhau từng đôi một thì"
+    luaChon: ["luôn bằng nhau", "chưa chắc bằng nhau", "không bao giờ bằng nhau", "bằng nhau nếu là tam giác vuông"]
+    dapAn: B
+    loiGiai: "Một tam giác đều cạnh $1\\,\\text{cm}$ và một tam giác đều cạnh $2\\,\\text{cm}$ có ba góc bằng nhau nhưng không bằng nhau."
+    loiSai: goc-khong-xen-giua
+    doKho: 2
+
+  - id: l7-c4-0012
+    bai: Các trường hợp bằng nhau của tam giác vuông
+    loai: trac-nghiem
+    de: "Tam giác $ABC$ vuông tại $A$ và tam giác $DEF$ vuông tại $D$ có $BC = EF$, $\\widehat{B} = \\widehat{E}$. Hai tam giác bằng nhau theo trường hợp nào?"
+    luaChon: ["Cạnh huyền – góc nhọn", "Hai cạnh góc vuông", "Cạnh huyền – cạnh góc vuông", "Không bằng nhau"]
+    dapAn: A
+    goiY: "$BC$ và $EF$ là cạnh đối diện với góc vuông."
+    doKho: 2
+
+  - id: l7-c4-0013
+    bai: Các trường hợp bằng nhau của tam giác vuông
+    loai: so
+    de: "Tam giác $ABC$ vuông tại $A$, tam giác $DEF$ vuông tại $D$ và $\\triangle ABC = \\triangle DEF$. Biết $\\widehat{B} = 40^\\circ$, tính số đo $\\widehat{F}$ (độ)."
+    dapAn: "50"
+    goiY: "$\\widehat{F}$ tương ứng với $\\widehat{C}$."
+    loiGiai: "$\\widehat{C} = 90^\\circ - 40^\\circ = 50^\\circ$, nên $\\widehat{F} = \\widehat{C} = 50^\\circ$."
+    loiSai: dinh-tuong-ung-sai
+    doKho: 2
+
+  - id: l7-c4-0014
+    bai: Tam giác cân. Đường trung trực của đoạn thẳng
+    loai: so
+    de: "Tam giác $ABC$ cân tại $A$ có $\\widehat{A} = 40^\\circ$. Tính số đo $\\widehat{B}$ (độ)."
+    dapAn: "70"
+    goiY: "Hai góc ở đáy $B$ và $C$ bằng nhau."
+    loiGiai: "$\\widehat{B} = (180^\\circ - 40^\\circ) : 2 = 70^\\circ$."
+    loiSai: nham-goc-day-dinh
+    doKho: 2
+
+  - id: l7-c4-0015
+    bai: Tam giác cân. Đường trung trực của đoạn thẳng
+    loai: so
+    de: "Tam giác $ABC$ cân tại $A$ có $\\widehat{B} = 50^\\circ$. Tính số đo $\\widehat{A}$ (độ)."
+    dapAn: "80"
+    loiGiai: "$\\widehat{C} = \\widehat{B} = 50^\\circ$, nên $\\widehat{A} = 180^\\circ - 2 \\cdot 50^\\circ = 80^\\circ$."
+    loiSai: nham-goc-day-dinh
+    doKho: 2
+
+  - id: l7-c4-0016
+    bai: Tam giác cân. Đường trung trực của đoạn thẳng
+    loai: so
+    de: "Điểm $M$ nằm trên đường trung trực của đoạn thẳng $AB$ và $MA = 4{,}5\\,\\text{cm}$. Tính $MB$ (cm)."
+    dapAn: "4,5"
+    goiY: "Điểm nằm trên đường trung trực của một đoạn thẳng thì cách đều hai đầu mút."
+    doKho: 1
+
+  - id: l7-c4-0017
+    bai: Tam giác cân. Đường trung trực của đoạn thẳng
+    loai: trac-nghiem
+    de: "Một tam giác cân có một góc bằng $60^\\circ$ là tam giác gì?"
+    luaChon: ["Tam giác đều", "Tam giác vuông cân", "Tam giác tù", "Chưa xác định được"]
+    dapAn: A
+    loiGiai: "Dù góc $60^\\circ$ là góc ở đỉnh hay góc ở đáy, hai góc còn lại cũng đều bằng $60^\\circ$."
+    loiSai: nham-goc-day-dinh
+    doKho: 3
