@@ -1,7 +1,10 @@
 import { encodeMission } from "@tgth/engine";
 import { loadIndex, type ContentIndex } from "./content";
+import { qrPng, qrSvg } from "./qr";
 import "@fontsource/noto-sans-mono/latin-400.css";
+import "@fontsource/noto-sans-mono/latin-700.css";
 import "@fontsource/noto-sans-mono/vietnamese-400.css";
+import "@fontsource/noto-sans-mono/vietnamese-700.css";
 import "./style.css";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -11,6 +14,8 @@ const errorEl = $("builder-error");
 const resultEl = $("result");
 const codeEl = $("code");
 const linkEl = $<HTMLInputElement>("link");
+const qrEl = $("qr");
+const projector = $<HTMLDialogElement>("projector");
 
 let index: ContentIndex | null = null;
 
@@ -66,8 +71,29 @@ form.addEventListener("submit", (e) => {
     errorEl.textContent = "";
     codeEl.textContent = code;
     linkEl.value = new URL(`./#nv=${code}`, document.baseURI).href;
+    // QR chứa cả link (không chỉ mã) để camera điện thoại mở thẳng game với nhiệm vụ.
+    qrEl.replaceChildren(qrSvg(linkEl.value, `Mã QR mở nhiệm vụ ${code}`));
     resultEl.hidden = false;
-    $<HTMLButtonElement>("copy-link").textContent = "Chép link";
+    $<HTMLButtonElement>("project").addEventListener("click", () => {
+  const code = codeEl.textContent ?? "";
+  $("projector-qr").replaceChildren(qrSvg(linkEl.value, `Mã QR mở nhiệm vụ ${code}`));
+  $("projector-code").textContent = code;
+  projector.showModal();
+});
+
+$<HTMLButtonElement>("save-qr").addEventListener("click", async () => {
+  const code = codeEl.textContent ?? "";
+  const png = await qrPng(linkEl.value, code);
+  if (!png) return;
+  const a = Object.assign(document.createElement("a"), {
+    href: URL.createObjectURL(png),
+    download: `nhiem-vu-${code}.png`,
+  });
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+});
+
+$<HTMLButtonElement>("copy-link").textContent = "Chép link";
     $<HTMLButtonElement>("copy-code").textContent = "Chép mã";
   } catch (err) {
     errorEl.textContent = (err as Error).message;
