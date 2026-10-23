@@ -9,6 +9,11 @@ không có màn thua.
 Thầy cô tạo mã nhiệm vụ ở `giao-vien.html` (link hoặc 15 kí tự gõ tay), gửi cho lớp qua Zalo. Mã chỉ
 chứa lớp, chương, số câu và hạn; không cần tài khoản hay máy chủ.
 
+Làm nhiệm vụ xong, học sinh gõ số thứ tự trong lớp để lấy mã kết quả (KQ-...) rồi gửi lại vào nhóm
+Zalo. Thầy cô dán cả đoạn chat vào Bảng lỗi sai trên cùng trang giáo viên: mỗi lỗi sai là một hàng,
+bao nhiêu em mắc, bao nhiêu em đã thu phục, số thứ tự các em cần hỗ trợ; xuất được CSV. Mã kết quả
+không có tên học sinh, và không có gì rời máy ngoài đoạn mã các em tự tay gửi.
+
 Chơi ngay: https://travinhloc.github.io/the-gioi-toan-hoc/ (trang giáo viên:
 https://travinhloc.github.io/the-gioi-toan-hoc/giao-vien.html).
 
@@ -19,7 +24,8 @@ Bản đầu tiên (MVP) nhắm tới lớp 7, chương I đến IV, với hai h
 ```
 packages/grader   Máy chấm: đọc số kiểu Việt Nam (0,5; 1/2; 1 1/2), so sánh chính xác bằng phân số.
                   TypeScript thuần, không dùng DOM, dùng chung cho game, CI nội dung và công cụ giáo viên.
-packages/engine   Engine game: thế giới khối, đào, chế tạo, mặt trời và đêm, Sổ Tay lỗi sai, mã nhiệm vụ.
+packages/engine   Engine game: thế giới khối, đào, chế tạo, mặt trời và đêm, Sổ Tay lỗi sai, mã nhiệm vụ,
+                  mã kết quả và Bảng lỗi sai.
                   Thuần, không DOM.
 apps/web          Ứng dụng PWA (Vite): vẽ thế giới bằng chữ khối đơn cách, KaTeX cho công thức,
                   service worker để chơi offline.
