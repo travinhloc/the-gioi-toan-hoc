@@ -8,6 +8,7 @@ import {
   currentQuestion,
   decodeMission,
   encodeMission,
+  encodeResult,
   fight,
   isNight,
   mine,
@@ -17,6 +18,7 @@ import {
   move,
   newGame,
   RECIPES,
+  resultOf,
   sleep,
   startDay,
   SUN_MAX,
@@ -27,7 +29,7 @@ import {
 import { choiceLetter } from "@tgth/grader";
 import { loadBank, type ContentQuestion, type LoiSai } from "./content";
 import { renderMathText } from "./math";
-import { loadSave, writeSave } from "./save";
+import { loadSave, loadStt, writeSave, writeStt } from "./save";
 import "@fontsource/noto-sans-mono/latin-400.css";
 import "@fontsource/noto-sans-mono/latin-700.css";
 import "@fontsource/noto-sans-mono/vietnamese-400.css";
@@ -165,11 +167,52 @@ function renderMission(): void {
     return;
   }
   const han = m.han ? ` trước ngày ${formatDate(m.han)}` : "";
-  const progress = m.dung >= m.soCau ? "Đã xong nhiệm vụ!" : `Tiến độ: ${m.dung}/${m.soCau}`;
+  const progress = m.dung >= m.soCau ? "Đã xong nhiệm vụ! Gửi mã kết quả bên dưới cho thầy cô nhé." : `Tiến độ: ${m.dung}/${m.soCau}`;
   missionEl.replaceChildren(
     el("p", `"Đào đúng ${m.soCau} câu ở chương ${m.chuong.join(", ")} lớp ${m.lop}${han}."`),
     el("p", progress),
+    ...resultPanel(),
   );
+}
+
+/**
+ * Mã kết quả luôn tính từ tiến độ hiện tại, nên em gửi lúc nào cũng là mới nhất.
+ * Chỉ cần số thứ tự trong lớp (không cần tên); số này chỉ lưu trên máy em.
+ */
+function resultPanel(): HTMLElement[] {
+  const m = state.mission;
+  if (!m || Object.keys(m.bai).length === 0) return [];
+  const stt = Number(loadStt());
+  if (!Number.isInteger(stt) || stt < 1 || stt > 63) {
+    const input = Object.assign(document.createElement("input"), { type: "number", min: "1", max: "63", required: true });
+    const label = el("label", "Số thứ tự của em trong lớp (xem sổ điểm)");
+    label.append(input);
+    const form = el("form", "", { className: "result-form" });
+    form.append(label, el("button", "Tạo mã kết quả"));
+    form.onsubmit = (e) => {
+      e.preventDefault();
+      writeStt(input.value);
+      render();
+    };
+    return [form];
+  }
+  const code = encodeResult(resultOf(state, stt)!);
+  const text = `Em số ${stt} gửi kết quả nhiệm vụ: ${code}`;
+  const copy = el("button", "Chép mã", { type: "button" });
+  copy.onclick = () => {
+    navigator.clipboard.writeText(text).then(
+      () => (copy.textContent = "Đã chép, dán vào Zalo lớp"),
+      () => getSelection()?.selectAllChildren(codeEl),
+    );
+  };
+  const codeEl = el("p", code, { className: "result-code" });
+  const buttons = el("p");
+  buttons.append(copy);
+  if ("share" in navigator) {
+    buttons.append(" ", el("button", "Gửi…", { type: "button", onclick: () => void navigator.share({ text }).catch(() => undefined) }));
+  }
+  buttons.append(" ", el("button", `Đổi số thứ tự (${stt})`, { type: "button", className: "quiet", onclick: () => (writeStt(""), render()) }));
+  return [el("p", "Mã kết quả gửi thầy cô:"), codeEl, buttons];
 }
 
 function takeMission(code: string): string | null {

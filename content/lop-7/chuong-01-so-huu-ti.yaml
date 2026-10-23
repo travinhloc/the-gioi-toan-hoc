@@ -3,7 +3,7 @@ schemaVersion: 1
 lop: 7
 chuong: 1
 ten: Số hữu tỉ
-nguon: Toán 7 Kết nối tri thức, tập 1, chương I (cần đối chiếu mục lục)
+nguon: Toán 7 Kết nối tri thức, tập 1, chương I (Bài 1 đến Bài 4)
 loiSai:
   cong-tu-mau:
     ten: Nhện Cộng Mẫu
@@ -11,6 +11,24 @@ loiSai:
   quen-doi-dau:
     ten: Con Lật Dấu
     moTa: "Chuyển một số sang vế kia mà quên đổi dấu."
+  so-sanh-am:
+    ten: Ốc Ngược Chiều
+    moTa: "So sánh hai số âm theo phần không dấu, ví dụ cho rằng $-\\frac{3}{4} > -\\frac{1}{2}$ vì $\\frac{3}{4} > \\frac{1}{2}$."
+  chia-khong-dao:
+    ten: Dơi Quên Đảo
+    moTa: "Chia cho một phân số mà không nhân với phân số nghịch đảo, hoặc đảo nhầm số bị chia."
+  nhan-so-mu:
+    ten: Sâu Nhân Mũ
+    moTa: "Nhân hai lũy thừa cùng cơ số mà nhân các số mũ, ví dụ $a^3 \\cdot a^2 = a^6$ thay vì $a^5$."
+  dau-luy-thua:
+    ten: Bọ Mất Dấu
+    moTa: "Quên rằng lũy thừa bậc lẻ của số âm vẫn là số âm, ví dụ $(-0{,}5)^3 = 0{,}125$."
+  thu-tu-phep-tinh:
+    ten: Kiến Vội Cộng
+    moTa: "Làm phép cộng, trừ trước phép nhân, chia khi biểu thức không có dấu ngoặc."
+  bo-ngoac-quen-dau:
+    ten: Rắn Bỏ Ngoặc
+    moTa: "Bỏ dấu ngoặc có dấu trừ đằng trước mà không đổi dấu các số hạng bên trong."
 cauHoi:
   - id: l7-c1-0001
     bai: Tập hợp các số hữu tỉ
@@ -47,7 +65,7 @@ cauHoi:
     doKho: 1
 
   - id: l7-c1-0005
-    bai: Quy tắc dấu ngoặc và quy tắc chuyển vế
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
     loai: so
     de: "Tìm $x$, biết $x - \\frac{1}{5} = \\frac{3}{10}$."
     dapAn: "1/2"
@@ -66,7 +84,7 @@ cauHoi:
     doKho: 1
 
   - id: l7-c1-0007
-    bai: Quy tắc dấu ngoặc và quy tắc chuyển vế
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
     loai: so
     de: "Tìm $x$, biết $x + \\frac{3}{4} = \\frac{1}{2}$."
     dapAn: "-1/4"
@@ -74,3 +92,148 @@ cauHoi:
     loiGiai: "$x = \\frac{1}{2} - \\frac{3}{4} = \\frac{2}{4} - \\frac{3}{4} = -\\frac{1}{4}$."
     loiSai: quen-doi-dau
     doKho: 2
+
+  - id: l7-c1-0008
+    bai: Tập hợp các số hữu tỉ
+    loai: trac-nghiem
+    de: "Số đối của $-\\frac{3}{7}$ là số nào?"
+    luaChon: ["$-\\frac{7}{3}$", "$\\frac{3}{7}$", "$\\frac{7}{3}$", "$-\\frac{3}{7}$"]
+    dapAn: B
+    loiGiai: "Hai số đối nhau có tổng bằng 0: $-\\frac{3}{7} + \\frac{3}{7} = 0$."
+    doKho: 1
+
+  - id: l7-c1-0009
+    bai: Tập hợp các số hữu tỉ
+    loai: trac-nghiem
+    de: "Số nào lớn nhất trong các số sau?"
+    luaChon: ["$-\\frac{1}{2}$", "$-\\frac{2}{3}$", "$-\\frac{3}{4}$", "$-0{,}8$"]
+    dapAn: A
+    goiY: "Với hai số âm, số nào gần 0 hơn thì lớn hơn."
+    loiGiai: "$-\\frac{1}{2} = -0{,}5$ gần 0 nhất nên lớn nhất."
+    loiSai: so-sanh-am
+    doKho: 2
+
+  - id: l7-c1-0010
+    bai: Tập hợp các số hữu tỉ
+    loai: so
+    de: "Tìm số hữu tỉ nằm chính giữa $\\frac{1}{3}$ và $\\frac{1}{2}$ trên trục số."
+    dapAn: "5/12"
+    goiY: "Quy đồng mẫu 12 rồi lấy trung bình cộng của hai số."
+    loiGiai: "$\\frac{1}{3} = \\frac{4}{12}$, $\\frac{1}{2} = \\frac{6}{12}$, số chính giữa là $\\frac{5}{12}$."
+    doKho: 2
+
+  - id: l7-c1-0011
+    bai: Cộng, trừ, nhân, chia số hữu tỉ
+    loai: so
+    de: "Tính $\\frac{-3}{4} \\cdot \\frac{8}{9}$."
+    dapAn: "-2/3"
+    loiGiai: "$\\frac{-3 \\cdot 8}{4 \\cdot 9} = \\frac{-24}{36} = -\\frac{2}{3}$."
+    doKho: 1
+
+  - id: l7-c1-0012
+    bai: Cộng, trừ, nhân, chia số hữu tỉ
+    loai: so
+    de: "Tính $\\frac{5}{6} : \\left(-\\frac{10}{3}\\right)$."
+    dapAn: "-1/4"
+    goiY: "Chia cho một phân số là nhân với phân số nghịch đảo của nó."
+    loiGiai: "$\\frac{5}{6} \\cdot \\left(-\\frac{3}{10}\\right) = -\\frac{15}{60} = -\\frac{1}{4}$."
+    loiSai: chia-khong-dao
+    doKho: 2
+
+  - id: l7-c1-0013
+    bai: Cộng, trừ, nhân, chia số hữu tỉ
+    loai: so
+    de: "Tính $\\frac{3}{4} - \\frac{5}{6}$."
+    dapAn: "-1/12"
+    goiY: "Mẫu số chung nhỏ nhất của 4 và 6 là 12."
+    loiGiai: "$\\frac{9}{12} - \\frac{10}{12} = -\\frac{1}{12}$."
+    loiSai: cong-tu-mau
+    doKho: 1
+
+  - id: l7-c1-0014
+    bai: Lũy thừa với số mũ tự nhiên của một số hữu tỉ
+    loai: so
+    de: "Tính $\\left(\\frac{1}{2}\\right)^3 \\cdot \\left(\\frac{1}{2}\\right)^2$."
+    dapAn: "1/32"
+    goiY: "Nhân hai lũy thừa cùng cơ số thì giữ cơ số và cộng các số mũ."
+    loiGiai: "$\\left(\\frac{1}{2}\\right)^{3+2} = \\left(\\frac{1}{2}\\right)^5 = \\frac{1}{32}$."
+    loiSai: nhan-so-mu
+    doKho: 2
+
+  - id: l7-c1-0015
+    bai: Lũy thừa với số mũ tự nhiên của một số hữu tỉ
+    loai: so
+    de: "Tính $(-0{,}5)^3$."
+    dapAn: "-0,125"
+    goiY: "Lũy thừa bậc lẻ của một số âm là số âm."
+    loiGiai: "$(-0{,}5)^3 = (-0{,}5) \\cdot (-0{,}5) \\cdot (-0{,}5) = -0{,}125$."
+    loiSai: dau-luy-thua
+    doKho: 2
+
+  - id: l7-c1-0016
+    bai: Lũy thừa với số mũ tự nhiên của một số hữu tỉ
+    loai: so
+    de: "Tính $(-3)^5 : (-3)^3$."
+    dapAn: "9"
+    goiY: "Chia hai lũy thừa cùng cơ số thì giữ cơ số và trừ các số mũ."
+    loiGiai: "$(-3)^{5-3} = (-3)^2 = 9$."
+    loiSai: dau-luy-thua
+    doKho: 2
+
+  - id: l7-c1-0017
+    bai: Lũy thừa với số mũ tự nhiên của một số hữu tỉ
+    loai: trac-nghiem
+    de: "Giá trị của $\\left(-\\frac{2}{5}\\right)^0$ là"
+    luaChon: ["$0$", "$1$", "$-\\frac{2}{5}$", "$-1$"]
+    dapAn: B
+    loiGiai: "Mọi số khác 0 lũy thừa bậc 0 đều bằng 1."
+    doKho: 1
+
+  - id: l7-c1-0018
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
+    loai: so
+    de: "Tính $\\frac{1}{2} + \\frac{1}{2} \\cdot \\frac{2}{3}$."
+    dapAn: "5/6"
+    goiY: "Nhân trước, cộng sau."
+    loiGiai: "$\\frac{1}{2} + \\frac{1}{3} = \\frac{3}{6} + \\frac{2}{6} = \\frac{5}{6}$."
+    loiSai: thu-tu-phep-tinh
+    doKho: 1
+
+  - id: l7-c1-0019
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
+    loai: so
+    de: "Tính $\\frac{7}{9} - \\left(\\frac{2}{9} - \\frac{1}{4}\\right)$."
+    dapAn: "29/36"
+    goiY: "Bỏ ngoặc có dấu trừ đằng trước thì đổi dấu mọi số hạng trong ngoặc."
+    loiGiai: "$\\frac{7}{9} - \\frac{2}{9} + \\frac{1}{4} = \\frac{5}{9} + \\frac{1}{4} = \\frac{20}{36} + \\frac{9}{36} = \\frac{29}{36}$."
+    loiSai: bo-ngoac-quen-dau
+    doKho: 2
+
+  - id: l7-c1-0020
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
+    loai: so
+    de: "Tìm $x$, biết $\\frac{2}{3}x - \\frac{1}{2} = \\frac{1}{6}$."
+    dapAn: "1"
+    goiY: "Chuyển $-\\frac{1}{2}$ sang vế phải trước, rồi chia cho $\\frac{2}{3}$."
+    loiGiai: "$\\frac{2}{3}x = \\frac{1}{6} + \\frac{1}{2} = \\frac{2}{3}$, nên $x = 1$."
+    loiSai: quen-doi-dau
+    doKho: 3
+
+  - id: l7-c1-0021
+    bai: Thứ tự thực hiện các phép tính. Quy tắc chuyển vế
+    loai: so
+    de: "Tìm $x$, biết $\\frac{3}{5} - x = -\\frac{1}{10}$."
+    dapAn: "7/10"
+    goiY: "Chuyển $x$ sang vế phải và $-\\frac{1}{10}$ sang vế trái."
+    loiGiai: "$x = \\frac{3}{5} + \\frac{1}{10} = \\frac{6}{10} + \\frac{1}{10} = \\frac{7}{10}$."
+    loiSai: quen-doi-dau
+    doKho: 2
+
+  - id: l7-c1-0022
+    bai: Luyện tập chung
+    loai: so
+    de: "Một chai nước có $\\frac{3}{4}$ lít. Lan uống $\\frac{2}{5}$ chai. Hỏi Lan đã uống bao nhiêu lít nước?"
+    dapAn: "3/10"
+    goiY: "Tìm $\\frac{2}{5}$ của $\\frac{3}{4}$ là làm phép nhân."
+    loiGiai: "$\\frac{2}{5} \\cdot \\frac{3}{4} = \\frac{6}{20} = \\frac{3}{10}$ lít, tức $0{,}3$ lít."
+    doKho: 1

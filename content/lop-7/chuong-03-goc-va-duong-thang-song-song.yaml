@@ -1,0 +1,170 @@
+# Mẫu nội dung, cần giáo viên rà lại trước khi dùng thật.
+# Chưa có hình vẽ, nên mỗi đề tự mô tả hình bằng lời. Đáp án số đo góc tính bằng độ.
+schemaVersion: 1
+lop: 7
+chuong: 3
+ten: Góc và đường thẳng song song
+nguon: Toán 7 Kết nối tri thức, tập 1, chương III (Bài 8 đến Bài 11)
+loiSai:
+  nham-ke-bu-doi-dinh:
+    ten: Cua Đi Ngang
+    moTa: "Nhầm hai góc kề bù (tổng bằng $180^\\circ$) với hai góc đối đỉnh (bằng nhau)."
+  phan-giac-nham-nua:
+    ten: Bướm Gấp Cánh
+    moTa: "Dùng tia phân giác mà quên chia đôi, hoặc quên nhân đôi, số đo góc."
+  nham-cap-goc:
+    ten: Thằn Lằn So Le
+    moTa: "Nhầm cặp góc trong cùng phía (bù nhau) với cặp góc so le trong hay đồng vị (bằng nhau)."
+  nham-gia-thiet-ket-luan:
+    ten: Cú Đảo Chiều
+    moTa: "Nhầm giả thiết với kết luận của một định lí, hoặc coi cả câu định lí là giả thiết."
+cauHoi:
+  - id: l7-c3-0001
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Hai góc kề bù, một góc bằng $65^\\circ$. Góc còn lại bằng bao nhiêu độ?"
+    dapAn: "115"
+    goiY: "Hai góc kề bù có tổng số đo bằng $180^\\circ$."
+    loiGiai: "$180^\\circ - 65^\\circ = 115^\\circ$."
+    loiSai: nham-ke-bu-doi-dinh
+    doKho: 1
+
+  - id: l7-c3-0002
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Hai đường thẳng cắt nhau tại $O$ tạo thành bốn góc, trong đó có một góc bằng $40^\\circ$. Góc đối đỉnh với góc đó bằng bao nhiêu độ?"
+    dapAn: "40"
+    goiY: "Hai góc đối đỉnh thì bằng nhau."
+    loiSai: nham-ke-bu-doi-dinh
+    doKho: 1
+
+  - id: l7-c3-0003
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Hai đường thẳng cắt nhau tạo thành bốn góc. Tổng của hai góc đối đỉnh là $130^\\circ$. Mỗi góc trong hai góc còn lại bằng bao nhiêu độ?"
+    dapAn: "115"
+    goiY: "Mỗi góc trong cặp đối đỉnh bằng $65^\\circ$. Góc còn lại kề bù với nó."
+    loiGiai: "Mỗi góc đối đỉnh bằng $130^\\circ : 2 = 65^\\circ$, nên mỗi góc còn lại bằng $180^\\circ - 65^\\circ = 115^\\circ$."
+    loiSai: nham-ke-bu-doi-dinh
+    doKho: 2
+
+  - id: l7-c3-0004
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Tia $Oz$ là tia phân giác của $\\widehat{xOy}$, biết $\\widehat{xOy} = 110^\\circ$. Tính số đo $\\widehat{xOz}$ (độ)."
+    dapAn: "55"
+    goiY: "Tia phân giác chia góc thành hai góc bằng nhau."
+    loiGiai: "$\\widehat{xOz} = 110^\\circ : 2 = 55^\\circ$."
+    loiSai: phan-giac-nham-nua
+    doKho: 1
+
+  - id: l7-c3-0005
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Tia $Ot$ là tia phân giác của $\\widehat{xOy}$, biết $\\widehat{xOt} = 35^\\circ$. Tính số đo $\\widehat{xOy}$ (độ)."
+    dapAn: "70"
+    loiGiai: "$\\widehat{xOy} = 2 \\cdot 35^\\circ = 70^\\circ$."
+    loiSai: phan-giac-nham-nua
+    doKho: 1
+
+  - id: l7-c3-0006
+    bai: Góc ở vị trí đặc biệt. Tia phân giác của một góc
+    loai: so
+    de: "Hai góc $\\widehat{xOy}$ và $\\widehat{yOz}$ kề bù, biết $\\widehat{xOy}$ gấp 3 lần $\\widehat{yOz}$. Tính số đo $\\widehat{yOz}$ (độ)."
+    dapAn: "45"
+    goiY: "Tổng hai góc là $180^\\circ$, chia thành $3 + 1 = 4$ phần bằng nhau."
+    loiGiai: "$\\widehat{yOz} = 180^\\circ : 4 = 45^\\circ$."
+    doKho: 2
+
+  - id: l7-c3-0007
+    bai: Hai đường thẳng song song và dấu hiệu nhận biết
+    loai: trac-nghiem
+    de: "Đường thẳng $c$ cắt hai đường thẳng $a$ và $b$. Điều nào sau đây cho biết $a \\parallel b$?"
+    luaChon: ["Có một cặp góc so le trong bằng nhau", "Có một cặp góc trong cùng phía bằng nhau", "Có một cặp góc đối đỉnh bằng nhau", "Có một cặp góc kề bù"]
+    dapAn: A
+    loiGiai: "Dấu hiệu nhận biết: có một cặp góc so le trong bằng nhau (hoặc một cặp góc đồng vị bằng nhau) thì $a \\parallel b$."
+    loiSai: nham-cap-goc
+    doKho: 1
+
+  - id: l7-c3-0008
+    bai: Hai đường thẳng song song và dấu hiệu nhận biết
+    loai: trac-nghiem
+    de: "Hai đường thẳng phân biệt cùng vuông góc với một đường thẳng thứ ba thì"
+    luaChon: ["song song với nhau", "vuông góc với nhau", "cắt nhau", "trùng nhau"]
+    dapAn: A
+    doKho: 1
+
+  - id: l7-c3-0009
+    bai: Tiên đề Euclid. Tính chất của hai đường thẳng song song
+    loai: so
+    de: "Cho $a \\parallel b$. Đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Một góc tại $A$ bằng $70^\\circ$. Góc so le trong với nó tại $B$ bằng bao nhiêu độ?"
+    dapAn: "70"
+    goiY: "Hai đường thẳng song song thì hai góc so le trong bằng nhau."
+    loiSai: nham-cap-goc
+    doKho: 1
+
+  - id: l7-c3-0010
+    bai: Tiên đề Euclid. Tính chất của hai đường thẳng song song
+    loai: so
+    de: "Cho $a \\parallel b$. Đường thẳng $c$ cắt $a$ tại $A$ và cắt $b$ tại $B$. Một góc tại $A$ bằng $70^\\circ$. Góc tại $B$ ở vị trí trong cùng phía với nó bằng bao nhiêu độ?"
+    dapAn: "110"
+    goiY: "Hai góc trong cùng phía thì bù nhau."
+    loiGiai: "$180^\\circ - 70^\\circ = 110^\\circ$."
+    loiSai: nham-cap-goc
+    doKho: 2
+
+  - id: l7-c3-0011
+    bai: Tiên đề Euclid. Tính chất của hai đường thẳng song song
+    loai: so
+    de: "Cho $m \\parallel n$, đường thẳng $d$ cắt cả hai. Một góc tạo bởi $d$ và $m$ bằng $125^\\circ$. Góc đồng vị với nó tạo bởi $d$ và $n$ bằng bao nhiêu độ?"
+    dapAn: "125"
+    loiSai: nham-cap-goc
+    doKho: 1
+
+  - id: l7-c3-0012
+    bai: Tiên đề Euclid. Tính chất của hai đường thẳng song song
+    loai: trac-nghiem
+    de: "Qua một điểm nằm ngoài một đường thẳng, có bao nhiêu đường thẳng song song với đường thẳng đó?"
+    luaChon: ["Không có đường nào", "Chỉ có một", "Có hai", "Có vô số"]
+    dapAn: B
+    loiGiai: "Đây là nội dung tiên đề Euclid."
+    doKho: 1
+
+  - id: l7-c3-0013
+    bai: Tiên đề Euclid. Tính chất của hai đường thẳng song song
+    loai: trac-nghiem
+    de: "Cho $a \\parallel b$ và $c \\perp a$. Khi đó"
+    luaChon: ["$c \\perp b$", "$c \\parallel b$", "$c$ trùng với $b$", "Không kết luận được"]
+    dapAn: A
+    loiGiai: "Một đường thẳng vuông góc với một trong hai đường thẳng song song thì vuông góc với đường thẳng kia."
+    doKho: 2
+
+  - id: l7-c3-0014
+    bai: Định lí và chứng minh định lí
+    loai: trac-nghiem
+    de: "Trong định lí \"Hai góc đối đỉnh thì bằng nhau\", giả thiết là"
+    luaChon: ["Hai góc đối đỉnh", "Hai góc bằng nhau", "Hai góc kề bù", "Hai góc đối đỉnh thì bằng nhau"]
+    dapAn: A
+    goiY: "Giả thiết là điều cho biết, nằm sau chữ \"nếu\" khi viết lại thành \"Nếu ... thì ...\"."
+    loiGiai: "Viết lại: \"Nếu hai góc đối đỉnh thì hai góc đó bằng nhau\". Giả thiết: hai góc đối đỉnh. Kết luận: hai góc đó bằng nhau."
+    loiSai: nham-gia-thiet-ket-luan
+    doKho: 1
+
+  - id: l7-c3-0015
+    bai: Định lí và chứng minh định lí
+    loai: trac-nghiem
+    de: "Trong định lí \"Nếu hai đường thẳng phân biệt cùng song song với một đường thẳng thứ ba thì chúng song song với nhau\", kết luận là"
+    luaChon: ["Hai đường thẳng phân biệt", "Hai đường thẳng đó song song với nhau", "Cùng song song với đường thẳng thứ ba", "Có một đường thẳng thứ ba"]
+    dapAn: B
+    loiSai: nham-gia-thiet-ket-luan
+    doKho: 2
+
+  - id: l7-c3-0016
+    bai: Luyện tập chung
+    loai: so
+    de: "Cho $\\widehat{xOy} = 50^\\circ$. Vẽ $\\widehat{yOz}$ kề bù với $\\widehat{xOy}$ và tia $Ot$ là tia phân giác của $\\widehat{yOz}$. Tính số đo $\\widehat{yOt}$ (độ)."
+    dapAn: "65"
+    goiY: "Tính $\\widehat{yOz}$ trước, rồi chia đôi."
+    loiGiai: "$\\widehat{yOz} = 180^\\circ - 50^\\circ = 130^\\circ$, nên $\\widehat{yOt} = 130^\\circ : 2 = 65^\\circ$."
+    loiSai: phan-giac-nham-nua
+    doKho: 3

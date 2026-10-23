@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1b1f24" />
-    <meta name="description" content="Tạo mã nhiệm vụ Thế Giới Khối Toán để giao cho lớp." />
+    <meta name="description" content="Tạo mã nhiệm vụ Thế Giới Khối Toán để giao cho lớp và xem Bảng lỗi sai." />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <title>Giao nhiệm vụ · Thế Giới Khối Toán</title>
   </head>
@@ -56,7 +56,29 @@
           không có thông tin nào về học sinh, và không có gì được gửi lên máy chủ.
         </p>
       </section>
+      <section id="board-section">
+        <h2>Bảng lỗi sai</h2>
+        <form id="board-form">
+          <p class="muted">
+            Học sinh xong nhiệm vụ sẽ gửi mã kết quả (dạng KQ-...) vào nhóm Zalo lớp. Thầy cô chép cả đoạn chat
+            dán vào đây, không cần lọc: trang tự tìm các mã, mỗi em lấy lần gửi sau cùng.
+          </p>
+          <label>
+            Mã nhiệm vụ đã giao
+            <input name="nv" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXX-XXXXX-XXXXX" required />
+          </label>
+          <label>
+            Tin nhắn có mã kết quả
+            <textarea name="kq" rows="6" spellcheck="false"></textarea>
+          </label>
+          <button>Xem Bảng lỗi sai</button>
+          <p id="board-error" class="error" aria-live="polite"></p>
+        </form>
+        <div id="board" hidden aria-live="polite"></div>
+        <p class="muted">Mọi thứ tính ngay trên máy này; đoạn đã dán chỉ lưu trong trình duyệt của thầy cô.</p>
+      </section>
     </main>
     <script type="module" src="./src/giao-vien.ts"></script>
+    <script type="module" src="./src/bang-loi-sai.ts"></script>
   </body>
 </html>
