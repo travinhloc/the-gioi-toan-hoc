@@ -3,7 +3,20 @@ schemaVersion: 1
 lop: 7
 chuong: 2
 ten: Số thực
-nguon: Toán 7 Kết nối tri thức, tập 1, chương II (cần đối chiếu mục lục)
+nguon: Toán 7 Kết nối tri thức, tập 1, chương II (Bài 5 đến Bài 7)
+loiSai:
+  vo-han-la-vo-ti:
+    ten: Sương Vô Hạn
+    moTa: "Cho rằng mọi số thập phân vô hạn đều là số vô tỉ, kể cả số vô hạn tuần hoàn như $0{,}(3)$."
+  lam-tron-cat:
+    ten: Kéo Cắt Cụt
+    moTa: "Cắt bỏ các chữ số phía sau thay vì làm tròn, ví dụ $0{,}666\\ldots \\approx 0{,}6$."
+  can-chia-doi:
+    ten: Ma Chia Đôi
+    moTa: "Lấy căn bậc hai bằng cách chia đôi, ví dụ $\\sqrt{16} = 8$."
+  tri-tuyet-doi-am:
+    ten: Bóng Trị Âm
+    moTa: "Để giá trị tuyệt đối ra số âm, ví dụ $|-3| = -3$."
 cauHoi:
   - id: l7-c2-0001
     bai: Làm quen với số thập phân vô hạn tuần hoàn
@@ -26,4 +39,134 @@ cauHoi:
     loai: so
     de: "Tính $|-3{,}5|$."
     dapAn: "3,5"
+    doKho: 1
+
+  - id: l7-c2-0004
+    bai: Làm quen với số thập phân vô hạn tuần hoàn
+    loai: so
+    de: "Viết số $0{,}(3)$ dưới dạng phân số tối giản."
+    dapAn: "1/3"
+    goiY: "Thử chia $1$ cho $3$ xem được số nào."
+    loiGiai: "$1 : 3 = 0{,}333\\ldots = 0{,}(3)$, nên $0{,}(3) = \\frac{1}{3}$."
+    doKho: 2
+
+  - id: l7-c2-0005
+    bai: Làm quen với số thập phân vô hạn tuần hoàn
+    loai: trac-nghiem
+    de: "Biết $\\frac{5}{11} = 0{,}454545\\ldots$ Chu kì của số thập phân này là"
+    luaChon: ["$45$", "$4$", "$54$", "$454$"]
+    dapAn: A
+    loiGiai: "Nhóm chữ số $45$ lặp lại mãi ngay sau dấu phẩy, nên $\\frac{5}{11} = 0{,}(45)$."
+    doKho: 1
+
+  - id: l7-c2-0006
+    bai: Làm quen với số thập phân vô hạn tuần hoàn
+    loai: so
+    de: "Làm tròn $\\frac{2}{3} = 0{,}666\\ldots$ đến hàng phần mười."
+    dapAn: "0,7"
+    goiY: "Chữ số ngay sau hàng phần mười là $6 \\geq 5$ nên phải làm tròn lên."
+    loiSai: lam-tron-cat
+    doKho: 1
+
+  - id: l7-c2-0007
+    bai: Làm quen với số thập phân vô hạn tuần hoàn
+    loai: so
+    de: "Làm tròn số $7{,}2849$ đến hàng phần trăm."
+    dapAn: "7,28"
+    goiY: "Nhìn chữ số hàng phần nghìn: $4 < 5$ nên giữ nguyên hàng phần trăm."
+    loiSai: lam-tron-cat
+    doKho: 1
+
+  - id: l7-c2-0008
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: so
+    de: "Tính $\\sqrt{0{,}25}$."
+    dapAn: "0,5"
+    goiY: "Tìm số không âm mà bình phương lên được $0{,}25$."
+    loiGiai: "$0{,}5^2 = 0{,}25$ nên $\\sqrt{0{,}25} = 0{,}5$."
+    loiSai: can-chia-doi
+    doKho: 1
+
+  - id: l7-c2-0009
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: so
+    de: "Tính $\\sqrt{\\frac{49}{64}}$."
+    dapAn: "7/8"
+    loiGiai: "$\\left(\\frac{7}{8}\\right)^2 = \\frac{49}{64}$ nên $\\sqrt{\\frac{49}{64}} = \\frac{7}{8}$."
+    loiSai: can-chia-doi
+    doKho: 1
+
+  - id: l7-c2-0010
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: trac-nghiem
+    de: "Số nào sau đây là số vô tỉ?"
+    luaChon: ["$\\sqrt{16}$", "$0{,}(12)$", "$\\sqrt{2}$", "$-\\frac{5}{3}$"]
+    dapAn: C
+    loiGiai: "$\\sqrt{16} = 4$, $0{,}(12) = \\frac{4}{33}$ và $-\\frac{5}{3}$ đều là số hữu tỉ. $\\sqrt{2}$ là số thập phân vô hạn không tuần hoàn."
+    loiSai: vo-han-la-vo-ti
+    doKho: 2
+
+  - id: l7-c2-0011
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: so
+    de: "Tính $(\\sqrt{7})^2 + \\sqrt{9}$."
+    dapAn: "10"
+    goiY: "Với $a \\geq 0$ thì $(\\sqrt{a})^2 = a$."
+    loiGiai: "$7 + 3 = 10$."
+    doKho: 1
+
+  - id: l7-c2-0012
+    bai: Số vô tỉ. Căn bậc hai số học
+    loai: so
+    de: "Một mảnh vườn hình vuông có diện tích $144\\,\\text{m}^2$. Cạnh của mảnh vườn dài bao nhiêu mét?"
+    dapAn: "12"
+    goiY: "Cạnh hình vuông là căn bậc hai số học của diện tích."
+    loiGiai: "$\\sqrt{144} = 12$ (m)."
+    loiSai: can-chia-doi
+    doKho: 1
+
+  - id: l7-c2-0013
+    bai: Tập hợp các số thực
+    loai: so
+    de: "Tìm $x$, biết $|x| = 2{,}5$ và $x < 0$."
+    dapAn: "-2,5"
+    loiGiai: "$|x| = 2{,}5$ nên $x = 2{,}5$ hoặc $x = -2{,}5$. Vì $x < 0$ nên $x = -2{,}5$."
+    doKho: 2
+
+  - id: l7-c2-0014
+    bai: Tập hợp các số thực
+    loai: so
+    de: "Tính $\\left|-\\frac{3}{4}\\right| + \\left|-\\frac{1}{4}\\right|$."
+    dapAn: "1"
+    goiY: "Giá trị tuyệt đối của một số luôn không âm."
+    loiGiai: "$\\frac{3}{4} + \\frac{1}{4} = 1$."
+    loiSai: tri-tuyet-doi-am
+    doKho: 1
+
+  - id: l7-c2-0015
+    bai: Tập hợp các số thực
+    loai: trac-nghiem
+    de: "Số đối của $-\\sqrt{3}$ là"
+    luaChon: ["$\\sqrt{3}$", "$-\\sqrt{3}$", "$3$", "$-3$"]
+    dapAn: A
+    doKho: 1
+
+  - id: l7-c2-0016
+    bai: Tập hợp các số thực
+    loai: trac-nghiem
+    de: "Số nào lớn nhất trong các số sau?"
+    luaChon: ["$\\sqrt{10}$", "$3{,}1$", "$\\frac{19}{6}$", "$3{,}15$"]
+    dapAn: C
+    goiY: "Viết các số dưới dạng thập phân. Để ý $3{,}16^2 < 10 < 3{,}17^2$."
+    loiGiai: "$\\sqrt{10} \\approx 3{,}162$ còn $\\frac{19}{6} = 3{,}1(6) \\approx 3{,}167$, nên $\\frac{19}{6}$ lớn nhất."
+    doKho: 3
+
+  - id: l7-c2-0017
+    bai: Tập hợp các số thực
+    loai: trac-nghiem
+    de: "Khẳng định nào sau đây SAI?"
+    luaChon: ["Mọi số hữu tỉ đều là số thực", "Số $0$ là số hữu tỉ", "Mọi số thực đều là số hữu tỉ", "$\\sqrt{2}$ là số thực"]
+    dapAn: C
+    loiGiai: "Số thực gồm số hữu tỉ và số vô tỉ. Chẳng hạn $\\sqrt{2}$ là số thực nhưng không phải số hữu tỉ."
+    loiSai: vo-han-la-vo-ti
     doKho: 1
