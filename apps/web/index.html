@@ -2,78 +2,92 @@
 <html lang="vi">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#1b1f24" />
     <meta name="description" content="Game ôn Toán THCS miễn phí: đào quặng bằng cách giải toán." />
     <link rel="manifest" href="./manifest.webmanifest" />
     <link rel="icon" href="./icon.svg" type="image/svg+xml" />
     <title>Thế Giới Khối Toán</title>
   </head>
-  <body>
-    <header>
+  <body class="game">
+    <!-- Một màn: thanh trạng thái, lưới mỏ, hai dòng nhật ký, thanh nút ở đáy. Mọi thứ khác là tấm trượt. -->
+    <header id="bar">
       <h1>Thế Giới Khối Toán</h1>
-      <span id="status" aria-live="polite"></span>
+      <span id="status"></span>
     </header>
-    <main>
-      <pre id="world" aria-label="Bản đồ thế giới" tabindex="0"></pre>
-      <aside>
-        <section>
-          <h2>Hôm nay</h2>
-          <div id="phase" aria-live="polite"></div>
-        </section>
-        <section>
-          <h2>Thư Thợ Cả</h2>
-          <div id="mission"></div>
-          <form id="mission-form">
-            <label>
-              Mã nhiệm vụ
-              <input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXX-XXXXX-XXXXX" />
-            </label>
-            <button>Nhận nhiệm vụ</button>
-            <p id="mission-error" class="error" aria-live="polite"></p>
-          </form>
-        </section>
-        <section>
-          <h2>Sổ Tay</h2>
-          <ul id="notebook"></ul>
-        </section>
-        <section>
-          <h2>Túi đồ</h2>
-          <ul id="inventory"></ul>
-        </section>
-        <section>
-          <h2>Chế tạo</h2>
-          <div id="recipes"></div>
-        </section>
-        <section class="help">
-          <h2>Cách chơi</h2>
-          <p>Mũi tên hoặc WASD (hoặc các nút ▲◀▶▼) để đi và quay hướng. Phím cách hoặc nút Đào để đào khối phía trước. Đào quặng ◆ thì phải giải một câu toán.</p>
-          <p>Câu sai được ghi vào Sổ Tay. Hết mặt trời thì đêm xuống, lỗi sai hóa thành quái: trả lời đúng để thu phục và nhận Đá Sáng. Không ai bị thua.</p>
-          <p><a href="./giao-vien.html">Dành cho thầy cô: tạo mã nhiệm vụ</a></p>
-        </section>
-      </aside>
+    <main id="screen">
+      <div id="world" aria-hidden="true"></div>
+      <section id="nearby" class="sr-only" aria-label="Các khối quanh em"></section>
+      <ol id="log" aria-live="polite"></ol>
+      <section id="phase" aria-live="polite"></section>
     </main>
-    <div id="pad" aria-hidden="true">
-      <button data-dir="up">▲</button>
-      <button data-dir="left">◀</button>
-      <button data-act="mine">Đào</button>
-      <button data-dir="right">▶</button>
-      <button data-dir="down">▼</button>
-    </div>
-    <dialog id="question">
-      <form method="dialog">
+    <nav id="tabs">
+      <button data-sheet="sheet-notebook">Sổ Tay</button>
+      <button data-sheet="sheet-craft">Chế tạo</button>
+      <button data-sheet="sheet-mail">Thư<span id="mail-badge"></span></button>
+      <button data-sheet="sheet-help" aria-label="Cách chơi">?</button>
+    </nav>
+
+    <dialog id="sheet-notebook" class="sheet">
+      <form method="dialog" class="sheet-head"><h2>Sổ Tay</h2><button>Đóng</button></form>
+      <p class="muted">Mỗi lỗi sai là một con quái. Nó hiện ra ban đêm vào ngày ghi bên cạnh.</p>
+      <ul id="notebook"></ul>
+    </dialog>
+
+    <dialog id="sheet-craft" class="sheet">
+      <form method="dialog" class="sheet-head"><h2>Chế tạo</h2><button>Đóng</button></form>
+      <h3>Túi đồ</h3>
+      <ul id="inventory"></ul>
+      <h3>Làm đồ</h3>
+      <div id="recipes"></div>
+    </dialog>
+
+    <dialog id="sheet-mail" class="sheet">
+      <form method="dialog" class="sheet-head"><h2>Thư Thợ Cả</h2><button>Đóng</button></form>
+      <div id="mission"></div>
+      <form id="mission-form">
+        <label>
+          Mã nhiệm vụ
+          <input name="code" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="XXXXX-XXXXX-XXXXX" />
+        </label>
+        <button>Nhận nhiệm vụ</button>
+        <p id="mission-error" class="error" aria-live="polite"></p>
+      </form>
+      <p class="muted">Thầy cô gửi link hoặc QR thì chỉ cần mở, nhiệm vụ tự vào đây.</p>
+      <p><a href="./giao-vien.html">Dành cho thầy cô: tạo mã nhiệm vụ</a></p>
+    </dialog>
+
+    <dialog id="sheet-help" class="sheet">
+      <form method="dialog" class="sheet-head"><h2>Cách chơi</h2><button>Đóng</button></form>
+      <p>Chạm một khối cạnh đường hầm để đào, @ tự đi tới. Trên máy tính dùng thêm mũi tên (hoặc WASD) để đi và phím cách để đào khối phía trước.</p>
+      <p>Đào quặng ◆ thì phải giải một câu toán. Mỗi câu tốn một nấc mặt trời ☼, câu sai tốn thêm một nấc.</p>
+      <p>Câu sai được ghi vào Sổ Tay. Hết mặt trời thì đêm xuống, lỗi sai hóa thành quái: trả lời đúng để thu phục và nhận Đá Sáng. Không ai bị thua.</p>
+      <p class="legend">▒ đất · ▓ đá · ♣ gỗ · ◆ quặng · @ em</p>
+    </dialog>
+
+    <dialog id="question" class="sheet">
+      <form method="dialog" id="question-form">
+        <div class="sheet-head">
+          <h2 id="question-title"></h2>
+          <button value="cancel" formnovalidate>Để sau</button>
+        </div>
         <p id="question-text"></p>
         <div id="question-choices"></div>
-        <label id="question-input-label">
-          Đáp án
-          <input id="question-input" autocomplete="off" inputmode="text" />
-        </label>
+        <div id="question-answer">
+          <label>
+            Đáp số
+            <input id="question-input" autocomplete="off" inputmode="none" spellcheck="false" />
+          </label>
+          <output id="question-preview" for="question-input" aria-live="polite"></output>
+        </div>
         <p id="question-feedback" aria-live="polite"></p>
-        <menu>
-          <button value="cancel" formnovalidate>Để sau</button>
-          <button id="question-submit" value="default">Trả lời</button>
-        </menu>
+        <div id="keypad"></div>
+        <button id="question-submit" value="default" class="primary">Trả lời</button>
       </form>
+      <div id="question-review" hidden>
+        <p id="review-text" aria-live="polite"></p>
+        <button id="review-next" type="button" class="primary">Tiếp tục đào</button>
+      </div>
     </dialog>
     <script type="module" src="./src/main.ts"></script>
   </body>

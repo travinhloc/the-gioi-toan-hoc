@@ -42,6 +42,11 @@
       <section id="result" hidden aria-live="polite">
         <h2>Mã nhiệm vụ</h2>
         <p id="code" class="code"></p>
+        <figure id="qr" class="qr"></figure>
+        <p>
+          <button id="project" type="button">Chiếu lên bảng</button>
+          <button id="save-qr" type="button">Tải ảnh QR</button>
+        </p>
         <label>
           Link gửi vào nhóm Zalo lớp
           <input id="link" readonly />
@@ -51,7 +56,7 @@
           <button id="copy-code" type="button">Chép mã</button>
         </p>
         <p class="muted">
-          Học sinh mở link, hoặc gõ mã vào ô Thư Thợ Cả trong game. Mã chỉ chứa lớp, chương, số câu và hạn;
+          Học sinh quét QR bằng camera điện thoại, mở link, hoặc gõ mã vào Thư Thợ Cả trong game. Mã chỉ chứa lớp, chương, số câu và hạn;
           không có thông tin nào về học sinh, và không có gì được gửi lên máy chủ.
         </p>
       </section>
@@ -77,6 +82,14 @@
         <p class="muted">Mọi thứ tính ngay trên máy này; đoạn đã dán chỉ lưu trong trình duyệt của thầy cô.</p>
       </section>
     </main>
+    <dialog id="projector" class="projector" aria-label="Mã nhiệm vụ trên máy chiếu">
+      <form method="dialog">
+        <div id="projector-qr" class="qr"></div>
+        <p id="projector-code" class="code"></p>
+        <p class="muted">Quét bằng camera điện thoại, hoặc vào game, mở Thư và gõ mã.</p>
+        <button>Đóng</button>
+      </form>
+    </dialog>
     <script type="module" src="./src/giao-vien.ts"></script>
     <script type="module" src="./src/bang-loi-sai.ts"></script>
   </body>
