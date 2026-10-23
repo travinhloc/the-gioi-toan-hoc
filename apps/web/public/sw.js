@@ -2,7 +2,7 @@
 // - Vỏ ứng dụng (HTML, JS, CSS, icon): lấy từ cache trước, cập nhật nền.
 // - Nội dung câu hỏi (content/): mạng trước, mất mạng thì dùng bản đã cache.
 // Đổi CACHE khi cần buộc mọi máy tải lại toàn bộ.
-const CACHE = "tgth-v1";
+const CACHE = "tgth-v2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
