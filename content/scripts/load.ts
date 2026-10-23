@@ -3,6 +3,7 @@ import { join, relative } from "node:path";
 import { Ajv } from "ajv";
 import katex from "katex";
 import { parse } from "yaml";
+import { hashKey } from "@tgth/engine";
 import { validateQuestion, type Question } from "@tgth/grader";
 import schema from "../schema/chuong.schema.json" with { type: "json" };
 
@@ -109,5 +110,29 @@ export function loadContent(root: string): { chuong: LoadedChuong[]; errors: str
     });
     chuong.push({ file, data });
   }
+  errors.push(...checkHashes(chuong));
   return { chuong, errors };
+}
+
+/**
+ * Mã kết quả chỉ gửi mã băm 15 bit của mã lỗi sai và tên bài; trang giáo viên dò ngược bằng
+ * nội dung của lớp. Hai tên cùng lớp trùng mã băm thì bảng lỗi sai sẽ lẫn, nên chặn từ đây.
+ * Câu không gắn lỗi sai thì chính mã câu là mã quái, nên cũng tính vào.
+ */
+function checkHashes(chuong: LoadedChuong[]): string[] {
+  const errors: string[] = [];
+  for (const lop of new Set(chuong.map((c) => c.data.lop))) {
+    const of = chuong.filter((c) => c.data.lop === lop).map((c) => c.data);
+    const loi = new Set(of.flatMap((c) => [...Object.keys(c.loiSai ?? {}), ...c.cauHoi.map((q) => q.id)]));
+    const bai = new Set(of.flatMap((c) => c.cauHoi.map((q) => q.bai ?? "")));
+    for (const [kind, names] of [["mã lỗi sai", loi], ["tên bài", bai]] as const) {
+      const seen = new Map<number, string>();
+      for (const name of names) {
+        const other = seen.get(hashKey(name));
+        if (other !== undefined) errors.push(`lớp ${lop}: ${kind} "${name}" trùng mã băm với "${other}", đổi tên một trong hai`);
+        seen.set(hashKey(name), name);
+      }
+    }
+  }
+  return errors;
 }

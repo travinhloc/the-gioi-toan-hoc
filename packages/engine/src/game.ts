@@ -6,7 +6,7 @@ import { blockAt, generateWorld, setBlock, type World } from "./world";
 import { createRandom } from "./random";
 
 /** Câu hỏi như engine cần: mã cố định cộng phần máy chấm hiểu, và mã lỗi sai nếu có. */
-export type BankQuestion = Question & { id: string; de: string; loiSai?: string };
+export type BankQuestion = Question & { id: string; de: string; bai?: string; loiSai?: string };
 
 /** Câu đang chờ trả lời: ban ngày là khối quặng, ban đêm là một con quái lỗi sai. */
 export type Pending =
@@ -30,6 +30,10 @@ export interface ActiveMission extends Mission {
   readonly code: string;
   /** Số câu đúng ban ngày đã làm trong các chương được giao. */
   readonly dung: number;
+  /** Đúng/sai theo bài (tên bài trong nội dung), để gửi lại trong mã kết quả. */
+  readonly bai: Readonly<Record<string, { readonly dung: number; readonly sai: number }>>;
+  /** Số lần sai theo mã lỗi (mã quái). */
+  readonly loi: Readonly<Record<string, number>>;
 }
 
 export interface GameState {
@@ -160,6 +164,16 @@ export function currentQuestion<Q extends BankQuestion>(state: GameState, bank: 
   return state.pending ? bank.find((q) => q.id === state.pending!.questionId) : undefined;
 }
 
+/** Ghi một câu trả lời ban ngày vào nhiệm vụ, nếu câu thuộc các chương được giao. */
+function tallyMission(m: ActiveMission | null, q: BankQuestion, ok: boolean): ActiveMission | null {
+  if (!m || !inMission(m, q.id)) return m;
+  const ten = q.bai ?? "";
+  const bai = m.bai[ten] ?? { dung: 0, sai: 0 };
+  if (ok) return { ...m, dung: m.dung + 1, bai: { ...m.bai, [ten]: { ...bai, dung: bai.dung + 1 } } };
+  const loi = monsterOf(q);
+  return { ...m, bai: { ...m.bai, [ten]: { ...bai, sai: bai.sai + 1 } }, loi: { ...m.loi, [loi]: (m.loi[loi] ?? 0) + 1 } };
+}
+
 /**
  * Trả lời câu đang chờ.
  * Ban ngày: đúng được quặng; sai thì ghi lỗi vào Sổ Tay và mặt trời tụt thêm một nấc.
@@ -195,9 +209,8 @@ export function answer(
     return { result, state: endNightIfClear(next) };
   }
 
+  const mission = tallyMission(state.mission, q, result.ok);
   if (result.ok) {
-    const m = state.mission;
-    const mission = m && inMission(m, q.id) ? { ...m, dung: m.dung + 1 } : m;
     const next: GameState = {
       ...state,
       pending: null,
@@ -216,6 +229,7 @@ export function answer(
     notebook: recordMistake(state.notebook, monsterOf(q), q.id, state.day),
     inventory: shielded ? addItem(state.inventory, "dong-ho-cat", -1) : state.inventory,
     today: { ...state.today, sai: state.today.sai + 1 },
+    mission,
   };
   return { result, state: spendSun(next, shielded ? 1 : 2) };
 }
@@ -241,7 +255,7 @@ export function startDay(state: GameState): GameState {
 /** Nhận nhiệm vụ mới từ giáo viên (thay nhiệm vụ cũ nếu có). Cùng mã thì giữ tiến độ. */
 export function acceptMission(state: GameState, mission: Mission, code: string): GameState {
   if (state.mission?.code === code) return state;
-  return { ...state, mission: { ...mission, code, dung: 0 } };
+  return { ...state, mission: { ...mission, code, dung: 0, bai: {}, loi: {} } };
 }
 
 export function craftRecipe(state: GameState, recipeId: string): GameState {

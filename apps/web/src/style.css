@@ -171,3 +171,13 @@ dialog.projector {
 .projector .code { font-size: clamp(1.5rem, 6vw, 4rem); }
 .projector .muted { color: #374151; font-size: 1.1rem; }
 .projector button { background: #e5e7eb; color: #000; }
+.result-form { display: grid; gap: 0.5rem; }
+.result-code { font-weight: 700; overflow-wrap: anywhere; user-select: all; }
+.teacher #board { background: var(--panel); padding: 1rem; margin-bottom: 1rem; }
+.teacher h3 { font-size: 0.95rem; margin: 1rem 0 0.5rem; }
+.teacher textarea { font: inherit; padding: 0.4rem; }
+.board-loi details { border-bottom: 1px solid #4b5563; padding: 0.4rem 0; }
+.board-loi summary { cursor: pointer; }
+.board-loi p { margin: 0.4rem 0 0 1rem; }
+.teacher table { border-collapse: collapse; width: 100%; font-size: 0.875rem; }
+.teacher th, .teacher td { border-bottom: 1px solid #4b5563; padding: 0.3rem; text-align: left; }
